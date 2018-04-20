@@ -1,11 +1,9 @@
 UnityProject/[Ll]ibrary/
-UnityProject/[Pp]rojectSettings/
 UnityProject/[Uu]nityPackageManager/
 UnityProject/[Tt]emp/
 UnityProject/[Oo]bj/
 UnityProject/[Bb]uild/
 UnityProject/[Bb]uilds/
-UnityProject/Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 UnityProject/.vs/
