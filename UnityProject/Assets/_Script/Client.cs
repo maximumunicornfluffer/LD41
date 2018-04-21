@@ -10,11 +10,11 @@ namespace DefaultNamespace
     {
         public StuffType _want;
 
-        public float _attemptMax = 10f;
+        public float _waitMax = 10f;
 
         public float _arriveTimestamp;
 
-        public ClientState _state;
+        private ClientState _state;
         public float _time = 0f;
 
         private Vector3 _waitPosition;
@@ -30,7 +30,7 @@ namespace DefaultNamespace
             _animator = GetComponent<Animator>();
             _data = FindObjectOfType<LevelData>();
             InitializeLocation();
-            _arriveTimestamp = Time.realtimeSinceStartup;
+            
             _scoreManager = FindObjectOfType<ScoreManager>();
             _state = ClientState.Arrive;
             _animator.SetInteger("State", (int)_state);
@@ -55,7 +55,7 @@ namespace DefaultNamespace
                     Move();
                     break;
                 case ClientState.Wait:
-                    if (GetAttemptTime() > _attemptMax)
+                    if (GetAttemptTime() > _waitMax)
                     {
                         _state = ClientState.QuitAngry;
                         _animator.SetInteger("State", (int)_state);
@@ -87,15 +87,16 @@ namespace DefaultNamespace
             transform.localPosition = new Vector3(_currentPosition.x, newPosition, _currentPosition.z);
             _currentPosition = transform.localPosition;
 
-            if (_currentPosition == _waitPosition)
+            if (Mathf.Approximately(_currentPosition.y,_waitPosition.y))
             {
+                _arriveTimestamp = Time.realtimeSinceStartup;
                 _state = ClientState.Wait;
                 _animator.SetInteger("State", (int)_state);
                 _time = 0;
                 _startPosition = _currentPosition;
             }
 
-            if (_currentPosition == _deadPosition)
+            if (Mathf.Approximately(_currentPosition.y,_deadPosition.y))
             {
                 _state = ClientState.ImDead;
                 _animator.SetInteger("State", (int)_state);
@@ -118,6 +119,12 @@ namespace DefaultNamespace
             }
 
             return false;
+        }
+
+        public void OnDeathAnimationEnd()
+        {
+            // instantié un prefab
+            Destroy(gameObject);
         }
     }
 }

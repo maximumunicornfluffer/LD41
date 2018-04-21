@@ -3737,7 +3737,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4006604511009058, guid: 36160fc9899bf4347aefc3bc5c31fd1b, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -9.81185
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4006604511009058, guid: 36160fc9899bf4347aefc3bc5c31fd1b, type: 2}
       propertyPath: m_LocalRotation.x
@@ -3762,6 +3762,11 @@ Prefab:
     - target: {fileID: 1918973340253106, guid: 36160fc9899bf4347aefc3bc5c31fd1b, type: 2}
       propertyPath: m_Name
       value: BigClient
+      objectReference: {fileID: 0}
+    - target: {fileID: 114024781293937676, guid: 36160fc9899bf4347aefc3bc5c31fd1b,
+        type: 2}
+      propertyPath: _attemptMax
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 36160fc9899bf4347aefc3bc5c31fd1b, type: 2}

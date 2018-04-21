@@ -32,11 +32,6 @@ namespace DefaultNamespace
             
             foreach (var client in _clients)
             {
-                if (client._state == ClientState.ImDead)
-                {
-                    //Spawn deadman
-                }
-                else
                 {
                     client.UpdateLoop();
                 }

@@ -3,10 +3,10 @@
     public enum ClientState
     {
         Arrive = 0,
-        Wait,
-        IsServed,
-        QuitHappy,
-        QuitAngry,
-        ImDead
+        Wait=1,
+        IsServed=2,
+        QuitHappy=3,
+        QuitAngry=4,
+        ImDead=5
     }
 }
