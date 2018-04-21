@@ -9,7 +9,7 @@ namespace DefaultNamespace
         [SerializeField]
         private Client _clientPrefab;
         private Collection<Client> _clients;
-        private 
+        private float _lastClientPop;
 
         void Start()
         {
@@ -18,12 +18,14 @@ namespace DefaultNamespace
             var client = Instantiate(_clientPrefab);
 
             _clients.Add(client);
+            _lastClientPop = Time.time;
         }
 
         public void UpdateLoop()
         {
-            if (Time.realtimeSinceStartup > 20 && _clients.Count < 10 )
+            if ((Time.time - _lastClientPop) > 20 && _clients.Count < 10 )
             {
+                _lastClientPop = Time.time;
                 var newclient = Instantiate(_clientPrefab);
                 _clients.Add(newclient);
             }
