@@ -48,7 +48,12 @@ namespace DefaultNamespace
                 foreach (var ie in iesInVicinity.Where(e => e.Type == IEType.Machine))
                 {
                     var machine = ie as Machine;
-                    if (machine.InputTypes.Count == 0 || machine.InputTypes.Contains(_stuffInHands))
+                    if (machine.State == MachineStates.IDLE && (machine.InputTypes.Count == 0 || machine.InputTypes.Contains(_stuffInHands)))
+                    {
+                        ActivateMachine(machine);
+                        found = true;
+                        break;
+                    } else if (machine.State == MachineStates.FULL && _stuffInHands == StuffType.None)
                     {
                         ActivateMachine(machine);
                         found = true;
@@ -62,15 +67,16 @@ namespace DefaultNamespace
         
         private void PickupStuff(Stuff stuff)
         {
-            Debug.LogFormat("Pickup {0}", _stuffInHands);
             _stuffInHands = stuff.m_type;
             stuff.PickUp();
+            Debug.LogFormat("Pickup {0}", _stuffInHands);
         }
 
         public void ActivateMachine(Machine machine)
         {
-            Debug.LogFormat("Activate Machine {0}", _stuffInHands);
+            var stuffInHands = _stuffInHands;
             _stuffInHands = machine.Activate(_stuffInHands);
+            Debug.LogFormat("Activate Machine Before:{0} After:{1}", stuffInHands, _stuffInHands);
         }
     }
 }

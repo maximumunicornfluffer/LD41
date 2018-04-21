@@ -89,7 +89,7 @@ namespace DefaultNamespace
     {
         _clientManager.UpdateLoop();
 
-      _ieManager.UpdateLoop();
+        _ieManager.UpdateLoop();
     }
     
     public IEManager IEManager { get { return _ieManager; } }

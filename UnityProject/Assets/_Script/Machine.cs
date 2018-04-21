@@ -16,34 +16,65 @@ namespace DefaultNamespace
         
         private MachineStates m_state = MachineStates.IDLE;
         private float m_processingEndTime;
-
-        private void Awake()
+        private bool m_highlighted = false; 
+        
+        protected override void Awake()
         {
-            m_state = MachineStates.IDLE;
-            m_spriteRenderer.color = Color.white;
+            base.Awake();
+            State = MachineStates.IDLE;
+        }
+
+        public MachineStates State
+        {
+            get { return m_state; }
+            set
+            {
+                if (m_state == value)
+                    return;
+                m_state = value;
+                UpdateHighlight();
+            }
+        }
+
+        private void UpdateHighlight()
+        {
+            switch (m_state)
+            {
+                case MachineStates.IDLE:
+                    if (m_highlighted)
+                        m_spriteRenderer.color = Color.red;
+                    else
+                        m_spriteRenderer.color = Color.white;
+                    break;
+                case MachineStates.PROCESSING:
+                    m_spriteRenderer.color = Color.yellow;
+                    break;
+                case MachineStates.FULL:
+                    m_spriteRenderer.color = Color.green;
+                    break;
+            }
         }
 
         public StuffType Activate(StuffType stuff)
         {
-            if (InputTypes.Count == 0 || InputTypes.Contains(stuff))
+            Debug.Log("State " + State);
+            if (State == MachineStates.IDLE && (InputTypes.Count == 0 || InputTypes.Contains(stuff)))
             {
                 m_stuffs.Add(stuff);
             }
 
-            if (m_state == MachineStates.IDLE && HasAllIngredients())
+            if (State == MachineStates.IDLE && HasAllIngredients())
             {
-                m_state = MachineStates.PROCESSING;
+                State = MachineStates.PROCESSING;
                 m_processingEndTime = Time.realtimeSinceStartup + processingDuration;
-                m_spriteRenderer.color = Color.yellow;
             }
 
-            if (m_state == MachineStates.PROCESSING)
+            if (State == MachineStates.PROCESSING)
                 CheckProcessing();
 
-            if (m_state == MachineStates.FULL)
+            if (State == MachineStates.FULL)
             {
-                m_state = MachineStates.IDLE;
-                m_spriteRenderer.color = Color.white;
+                State = MachineStates.IDLE;
                 return OutputType;
             }
             
@@ -63,15 +94,13 @@ namespace DefaultNamespace
 
         protected override void Highlight(bool highlight)
         {
-            if (highlight)
-                m_spriteRenderer.color = Color.red;
-            else
-                m_spriteRenderer.color = Color.white;
+            m_highlighted = highlight;
+            UpdateHighlight();
         }
 
         public override void UpdateLoop()
         {
-            if (m_state == MachineStates.PROCESSING)
+            if (State == MachineStates.PROCESSING)
                 CheckProcessing();
         }
 
@@ -80,8 +109,7 @@ namespace DefaultNamespace
             if (Mathf.Approximately(processingDuration, 0) || Time.realtimeSinceStartup > m_processingEndTime)
             {
                 m_stuffs.Clear();
-                m_state = MachineStates.FULL;
-                m_spriteRenderer.color = Color.green;
+                State = MachineStates.FULL;
             }
         }
     }

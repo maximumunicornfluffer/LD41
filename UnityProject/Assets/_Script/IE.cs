@@ -14,7 +14,7 @@ public enum IEType {
 
         protected abstract void Highlight(bool highlight);
 
-        private void Awake()
+        protected virtual void Awake()
         {
             GameManager.Instance.IEManager.Register(this);
         }
