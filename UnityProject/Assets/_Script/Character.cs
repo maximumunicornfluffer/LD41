@@ -7,6 +7,8 @@ namespace DefaultNamespace
   {
     [SerializeField]
     private float _moveForceRatio = 100;
+
+    public Stuff _resource;
     
     public PlayerInput _input;
     
