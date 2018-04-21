@@ -9,6 +9,8 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets\_Script" t="Include">
         <e p="Character.cs" t="Include" />
+        <e p="Client.cs" t="Include" />
+        <e p="ClientState.cs" t="Include" />
         <e p="GameManager.cs" t="Include" />
         <e p="IE.cs" t="Include" />
         <e p="LevelData.cs" t="Include" />
