@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\tinta\.Rider2018.1\system\resharper-host\local\Transient\ReSharperHost\v12\SolutionCaches\_UnityProject.1552970205.00" t="ExcludeRecursive" />
+    <e p="D:\Projet\ludum\UnityProject" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets\_Script" t="Include">
+        <e p="Character.cs" t="Include" />
+        <e p="Client.cs" t="Include" />
+        <e p="ClientState.cs" t="Include" />
+        <e p="GameManager.cs" t="Include" />
+        <e p="IE.cs" t="Include" />
+        <e p="LevelData.cs" t="Include" />
+        <e p="Processor.cs" t="Include" />
+        <e p="Provider.cs" t="Include" />
+        <e p="Service.cs" t="Include" />
+        <e p="States.cs" t="Include" />
+        <e p="Stuff.cs" t="Include" />
+      </e>
+      <e p="Assets\Plugins" t="Include">
+        <e p="GameUtils" t="Include">
+          <e p="Camera" t="Include">
+            <e p="BarycenterTargetCamera" t="Include">
+              <e p="BaryCameraController.cs" t="Include" />
+              <e p="ICameraTarget.cs" t="Include" />
+            </e>
+            <e p="SimpleTargetCameraFollower.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="MultipleButtonChoice" t="Include">
+              <e p="ChoiceButton.cs" t="Include" />
+              <e p="MultipleChoiceButtons.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Input" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="Editor" t="Include">
+              <e p="GroupActions" t="Include">
+                <e p="ActionGroupManager.cs" t="Include" />
+                <e p="ChangeJoystickGroupAction.cs" t="Include" />
+                <e p="DeleteGroupAction.cs" t="Include" />
+                <e p="DuplicateGroupAction.cs" t="Include" />
+                <e p="IGroupAction.cs" t="Include" />
+                <e p="RenameGroupAction.cs" t="Include" />
+                <e p="SaveAction.cs" t="Include" />
+              </e>
+              <e p="Inputs" t="Include">
+                <e p="Input.cs" t="Include" />
+                <e p="JTInputAxis.cs" t="Include" />
+              </e>
+              <e p="JoystickReorderedList.cs" t="Include" />
+              <e p="JoystickTool.cs" t="Include" />
+            </e>
+            <e p="PlayerInputManagement" t="Include">
+              <e p="InputsManager.cs" t="Include" />
+              <e p="PadUsedType.cs" t="Include" />
+              <e p="PlayerInput.cs" t="Include" />
+              <e p="PlayerInputUtils.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Utils" t="Include">
+          <e p="coroutine" t="Include">
+            <e p="CoroutineManager.cs" t="Include" />
+          </e>
+          <e p="CustomEventMethods" t="Include">
+            <e p="IFixedUpdate.cs" t="Include" />
+            <e p="ILateUpdate.cs" t="Include" />
+            <e p="IPreUpdate.cs" t="Include" />
+            <e p="IUpdate.cs" t="Include" />
+          </e>
+          <e p="debug" t="Include">
+            <e p="DebugValueDisplayer.cs" t="Include" />
+          </e>
+          <e p="Extensions" t="Include">
+            <e p="EnumerableExtensions.cs" t="Include" />
+          </e>
+          <e p="FSM" t="Include">
+            <e p="AbstractState.cs" t="Include" />
+            <e p="FSM.cs" t="Include" />
+            <e p="StateStatus.cs" t="Include" />
+          </e>
+          <e p="Option.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Assets\Starter" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Lobby.cs" t="Include" />
+          <e p="MainInitializer.cs" t="Include" />
+          <e p="Players" t="Include">
+            <e p="Player.cs" t="Include" />
+            <e p="PlayersManager.cs" t="Include" />
+          </e>
+          <e p="States" t="Include">
+            <e p="GameState.cs" t="Include" />
+            <e p="LobbyState.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Assets\Tilemap" t="Include">
+        <e p="Brushes" t="Include">
+          <e p="Coordinate Brush" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="CoordinateBrush.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="GameObject Brush" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="GameObjectBrush.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Line Brush" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="LineBrush.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Prefab Brush" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="PrefabBrush.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Random Brush" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="RandomBrush.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Tint Brush" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="TintBrush.cs" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="Tint Brush Smooth" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="TintBrushSmooth.cs" t="Include" />
+              </e>
+              <e p="TintTextureGenerator.cs" t="Include" />
+            </e>
+            <e p="Shaders" t="Include">
+              <e p="TintedTilemap.shader" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="GridInformation" t="Include">
+          <e p="Scripts" t="Include">
+            <e p="GridInformation.cs" t="Include" />
+          </e>
+        </e>
+        <e p="Tiles" t="Include">
+          <e p="Animated Tile" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="AnimatedTile.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Pipeline Tile" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="PipelineTile.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Random Tile" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="RandomTile.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Rule Tile" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="Editor" t="Include">
+                <e p="RuleTileEditor.cs" t="Include" />
+              </e>
+              <e p="RuleTile.cs" t="Include" />
+            </e>
+          </e>
+          <e p="Terrain Tile" t="Include">
+            <e p="Scripts" t="Include">
+              <e p="TerrainTile.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Library" t="ExcludeRecursive" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp" t="ExcludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+      </e>
+      <e p="UnityProject.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>
