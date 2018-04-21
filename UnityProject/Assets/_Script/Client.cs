@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
+using Random = UnityEngine.Random;
 
 namespace DefaultNamespace
 {
@@ -22,14 +23,17 @@ namespace DefaultNamespace
         private Vector3 _startPosition;
         private LevelData _data;
         private ScoreManager _scoreManager;
+        private Animator _animator;
         
         void Awake()
         {
+            _animator = GetComponent<Animator>();
             _data = FindObjectOfType<LevelData>();
             InitializeLocation();
             _arriveTimestamp = Time.realtimeSinceStartup;
             _scoreManager = FindObjectOfType<ScoreManager>();
             _state = ClientState.Arrive;
+            _animator.SetInteger("State", (int)_state);
         }
 
         private void InitializeLocation()
@@ -54,11 +58,13 @@ namespace DefaultNamespace
                     if (GetAttemptTime() > _attemptMax)
                     {
                         _state = ClientState.QuitAngry;
+                        _animator.SetInteger("State", (int)_state);
                     }
 
                     break;
                 case ClientState.IsServed:
                     _state = ClientState.QuitHappy;
+                    _animator.SetInteger("State", (int)_state);
                     break;
             }
         }
@@ -84,6 +90,7 @@ namespace DefaultNamespace
             if (_currentPosition == _waitPosition)
             {
                 _state = ClientState.Wait;
+                _animator.SetInteger("State", (int)_state);
                 _time = 0;
                 _startPosition = _currentPosition;
             }
@@ -91,6 +98,7 @@ namespace DefaultNamespace
             if (_currentPosition == _deadPosition)
             {
                 _state = ClientState.ImDead;
+                _animator.SetInteger("State", (int)_state);
             }
         }
 
@@ -99,11 +107,12 @@ namespace DefaultNamespace
             return Time.realtimeSinceStartup - _arriveTimestamp;
         }
 
-        public bool GiveStuff(Stuff inputStuff)
+        public bool GiveStuff(StuffType inputStuff)
         {
             if (_want.GetType() == inputStuff.GetType())
             {
                 _state = ClientState.IsServed;
+                _animator.SetInteger("State", (int)_state);
                 _scoreManager.Add(10);
                 return true;
             }

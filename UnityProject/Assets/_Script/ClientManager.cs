@@ -32,7 +32,25 @@ namespace DefaultNamespace
             
             foreach (var client in _clients)
             {
-                client.UpdateLoop();
+                if (client._state == ClientState.ImDead)
+                {
+                    //Spawn deadman
+                }
+                else
+                {
+                    client.UpdateLoop();
+                }
+            }
+        }
+
+        public void GiveStuff(StuffType inputStuff)
+        {
+            foreach (var client in _clients)
+            {
+                if (client.GiveStuff(inputStuff)) ;
+                {
+                    break;
+                }
             }
         }
     }

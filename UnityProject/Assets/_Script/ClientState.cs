@@ -2,7 +2,7 @@
 {
     public enum ClientState
     {
-        Arrive,
+        Arrive = 0,
         Wait,
         IsServed,
         QuitHappy,
