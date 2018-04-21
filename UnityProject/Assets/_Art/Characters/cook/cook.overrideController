@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: cook
+  m_Controller: {fileID: 9100000, guid: 8efa1a1a20dfacf4b9aa3db2f7a3e1cc, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d32c6796522e6bc4db174c6a8d42f2fd, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4ffd17c91f7cf0c4e9f0007832e6842f, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 7397fa3f5e38b0f4e96cf6b0b0f20192, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8970e97eec91e29449392df8c9e3ec1b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: fa0197c307b9db64ea36789e94791959, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: c98f695b100df074888413057e64b495, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: b4df3463be78fe741a5b065965ec0123, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 23f7833cb7e46944d9bc24fffc1268f1, type: 2}

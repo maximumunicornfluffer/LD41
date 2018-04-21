@@ -17,7 +17,7 @@ namespace DefaultNamespace
     #endregion
     
     [SerializeField]
-    private Character _characterPrefab;
+    private Character[] _characterPrefab;
 
     private ClientManager _clientManager;
     private IEManager _ieManager = new IEManager();
@@ -60,7 +60,7 @@ namespace DefaultNamespace
         //_data._StartPoints
         //var ship = PrefabUtility.InstantiatePrefab(_shipPrefab);
 
-        var character = Instantiate(_characterPrefab);
+        var character = Instantiate(_characterPrefab[i]);
 
         character.transform.SetParent(transform);
         character.transform.SetParent(null);
