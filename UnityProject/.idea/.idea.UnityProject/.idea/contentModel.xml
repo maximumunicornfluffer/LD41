@@ -10,6 +10,7 @@
       <e p="Assets\_Script" t="Include">
         <e p="Character.cs" t="Include" />
         <e p="Client.cs" t="Include" />
+        <e p="ClientManager.cs" t="Include" />
         <e p="ClientState.cs" t="Include" />
         <e p="GameManager.cs" t="Include" />
         <e p="IE.cs" t="Include" />
@@ -19,6 +20,9 @@
         <e p="Service.cs" t="Include" />
         <e p="States.cs" t="Include" />
         <e p="Stuff.cs" t="Include" />
+        <e p="UI" t="Include">
+          <e p="ActivePlayersUI.cs" t="Include" />
+        </e>
       </e>
       <e p="Assets\Plugins" t="Include">
         <e p="GameUtils" t="Include">

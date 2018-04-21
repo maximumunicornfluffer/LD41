@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq.Expressions;
 using UnityEngine;
 using UnityEngine.Scripting.APIUpdating;
 
@@ -15,13 +16,26 @@ namespace DefaultNamespace
         public float _arriveTimestamp;
 
         public ClientState _state;
+        public float _time = 0f;
+
+        public Vector3 _waitPosition;
+        public Vector3 _deadPosition;
+        public Vector3 _currentPosition;
+        public Vector3 _startPosition;
+        private LevelData _data;
 
         void Awake()
         {
+            _data = FindObjectOfType<LevelData>();
+            _startPosition = _currentPosition = _data.ClientPoints[0].localPosition;
+            _waitPosition = _data.ClientPoints[1].localPosition;
+            _deadPosition = _data.ClientPoints[2].localPosition;
+
+            transform.localPosition = _startPosition;
             _arriveTimestamp = Time.realtimeSinceStartup;
             _rb = GetComponent<Rigidbody2D>();
+            _state = ClientState.Arrive;
         }
-
 
         public void UpdateLoop()
         {
@@ -37,6 +51,7 @@ namespace DefaultNamespace
                     {
                         _state = ClientState.QuitAngry;
                     }
+
                     break;
                 case ClientState.IsServed:
                     _state = ClientState.QuitHappy;
@@ -46,7 +61,32 @@ namespace DefaultNamespace
 
         private void Move()
         {
-            
+            float newPosition = 0f;
+            _time += Time.deltaTime;
+            Debug.LogError($"time {_time}");
+            switch (_state)
+            {
+                case ClientState.Arrive:
+                    newPosition = Mathf.Lerp(_startPosition.y, _waitPosition.y, _time / 5f);
+                    break;
+                case ClientState.QuitAngry:
+                case ClientState.QuitHappy:
+                    newPosition = Mathf.Lerp(_startPosition.y, _deadPosition.y, _time / 5f);
+                    break;
+            }
+
+            transform.localPosition = new Vector3(_currentPosition.x, newPosition, _currentPosition.z);
+            _currentPosition = transform.localPosition;
+
+            if (_currentPosition == _waitPosition)
+            {
+                _state = ClientState.Wait;
+            }
+
+            if (_currentPosition == _deadPosition)
+            {
+                _state = ClientState.ImDead;
+            }
         }
 
         private float GetAttemptTime()
