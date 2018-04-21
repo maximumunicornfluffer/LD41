@@ -1,6 +1,6 @@
-# LD41
+# The Circle of Life feat DJ Fries
 Ludum Dare 41
 
 This is our contribution to Ludum Dare 41.
 
-Our project is Pony Hawk, a skate game with a pony.
+Our project is "the circle of life feat DJ fries", a cook game with death.
