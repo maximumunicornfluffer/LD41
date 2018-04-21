@@ -119,7 +119,8 @@ namespace DefaultNamespace
 
         public void OnDeathAnimationEnd()
         {
-            // TODO instantié un corpse prefab!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            var corpse = GameManager.Instance.InstantiateStuff(StuffType.Corpes);
+            corpse.transform.position = transform.position;
             Destroy(gameObject);
         }
     }
