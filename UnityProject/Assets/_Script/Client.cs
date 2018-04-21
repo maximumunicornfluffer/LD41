@@ -8,7 +8,7 @@ namespace DefaultNamespace
 {
     public class Client : MonoBehaviour
     {
-        public Stuff _want;
+        public StuffType _want;
 
         public float _attemptMax = 10f;
 
