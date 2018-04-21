@@ -8,7 +8,7 @@ namespace States
     
     public override string[] GetStaticSceneName()
     {
-      return new  string[]{"GlobalRace"};
+      return new  string[]{"GlobalGameLogic"};
     }
   }
 }
