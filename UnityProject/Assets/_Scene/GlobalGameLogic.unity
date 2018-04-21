@@ -681,6 +681,7 @@ MonoBehaviour:
   - {fileID: 114180019470431672, guid: 2a15f324112f34c49a9a135874175a2d, type: 2}
   - {fileID: 114180019470431672, guid: 0c16572c1bafc9644b1c73caef674d3e, type: 2}
   - {fileID: 114180019470431672, guid: dd7d43ac274b5864293046f5f15a0e48, type: 2}
+  m_stuffDictionary: {fileID: 11400000, guid: 17a83e989e71b1847b8609f2d99000d6, type: 2}
 --- !u!114 &888818619
 MonoBehaviour:
   m_ObjectHideFlags: 0

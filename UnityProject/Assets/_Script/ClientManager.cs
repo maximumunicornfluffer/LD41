@@ -44,7 +44,7 @@ namespace DefaultNamespace
         {
             foreach (var client in _clients)
             {
-                if (client.GiveStuff(inputStuff)) ;
+                if (client.GiveStuff(inputStuff))
                 {
                     break;
                 }

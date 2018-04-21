@@ -40,4 +40,10 @@ public enum IEType {
         }
 
         public abstract void UpdateLoop();
+
+        private void Update()
+        {
+            var pos = transform.localPosition;
+            transform.localPosition = new Vector3(pos.x, pos.y, -pos.y);
+        }
     }

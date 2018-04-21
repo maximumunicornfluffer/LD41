@@ -38,7 +38,7 @@
         public void PickUp()
         {
             // TODO : Despawn animation
-            _mStuffState = StuffState;
+            _mStuffState = StuffState.PickedUp;
             Destroy(gameObject);
         }
 

@@ -6,6 +6,7 @@ namespace DefaultNamespace
   {
     [SerializeField] private Transform[] _startPoints;
     [SerializeField] private Transform[] _clientPoints;
+    [SerializeField] private Transform _ieContainer;
     
     public Transform[] StartPoints
     {
@@ -13,5 +14,7 @@ namespace DefaultNamespace
     }
 
     public Transform[] ClientPoints => _clientPoints;
+    
+    public Transform IEContainer {get { return _ieContainer;}}
   }
 }

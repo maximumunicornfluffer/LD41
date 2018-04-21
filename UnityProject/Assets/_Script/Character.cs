@@ -43,6 +43,10 @@ namespace DefaultNamespace
       
       _rb.AddForce(stickVector * _moveForceRatio);
 
+      var pos = transform.localPosition;
+      // Force Z to remove zfighting.
+      transform.localPosition = new Vector3(pos.x, pos.y, -pos.y);
+      
       if (_input.ADown())
       {
         m_logic.Act();

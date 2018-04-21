@@ -4,69 +4,71 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-  public class GameManager : MonoBehaviour
-  {
-    #region Singleton
-
-    private static GameManager s_instance;
-
-    public static GameManager Instance
+    public class GameManager : MonoBehaviour
     {
-      get { return s_instance; }
-    }
-    #endregion
-    
-    [SerializeField]
-    private Character[] _characterPrefab;
+        #region Singleton
 
-    private ClientManager _clientManager;
-    private IEManager _ieManager = new IEManager();
-    
-    private LevelData _data;
-    
-    void Awake()
-    {
-      s_instance = this;
-    }
-    
-    void Start ()
-    {
-      _data = FindObjectOfType<LevelData>();
-     
-      _clientManager = gameObject.GetComponent<ClientManager>();
-      
-      InitializePlayers();
-      
+        private static GameManager s_instance;
+
+        public static GameManager Instance
+        {
+            get { return s_instance; }
+        }
+
+        #endregion
+
+        [SerializeField] private Character[] _characterPrefab;
+
+        [SerializeField] private StuffDictionary m_stuffDictionary;
+
+        private ClientManager _clientManager;
+        private IEManager _ieManager = new IEManager();
+
+        private LevelData _data;
+
+        void Awake()
+        {
+            s_instance = this;
+        }
+
+        void Start()
+        {
+            _data = FindObjectOfType<LevelData>();
+
+            _clientManager = gameObject.GetComponent<ClientManager>();
+
+            InitializePlayers();
+
 //      InputsManager.Instance.AutoUpdate = false;
-      
+
 //      _state = RaceStateEnum.Intro;
 //      _countDownUI.OnCountDownFinished += () => _state = RaceStateEnum.Run;
 //      _countDownUI.Reset(3);
 //
 //      _openRestartOrLeaveButton.onClick.AddListener(() =>
 //        _restartOrLeaveUI.gameObject.SetActive(!_restartOrLeaveUI.gameObject.activeSelf));
-    }
+        }
 
-    private void InitializePlayers()
-    {
-      int i = 0;
-      var characters = new List<Character>();
+        private void InitializePlayers()
+        {
+            int i = 0;
+            var characters = new List<Character>();
 
-      if (PlayersManager.Instance.Players.Count == 0)
-        InputsManager.Instance.ForceCreateMainPlayer();
+            if (PlayersManager.Instance.Players.Count == 0)
+                InputsManager.Instance.ForceCreateMainPlayer();
 
-      foreach (var p in PlayersManager.Instance.Players)
-      {
-        //_data._StartPoints
-        //var ship = PrefabUtility.InstantiatePrefab(_shipPrefab);
+            foreach (var p in PlayersManager.Instance.Players)
+            {
+                //_data._StartPoints
+                //var ship = PrefabUtility.InstantiatePrefab(_shipPrefab);
 
-        var character = Instantiate(_characterPrefab[i]);
+                var character = Instantiate(_characterPrefab[i]);
 
-        character.transform.SetParent(transform);
-        character.transform.SetParent(null);
+                character.transform.SetParent(transform);
+                character.transform.SetParent(null);
 //        HandlerManager.Instance.CreateHandler(character,PatternEnum.Default);
 
-        character._input = p.Input;
+                character._input = p.Input;
 //        if (i == 0 && _mobileControllerUi!=null)
 //        {
 //          p.Input.ResetExternalTrigger();
@@ -77,21 +79,39 @@ namespace DefaultNamespace
 //        }
 //        controller.Color = p.Color;
 
-        character.transform.position = _data.StartPoints[i].position;
+                character.transform.position = _data.StartPoints[i].position;
 
-        characters.Add(character);
+                characters.Add(character);
 
-        i++;
-      }
+                i++;
+            }
+        }
+
+        private void Update()
+        {
+            _clientManager.UpdateLoop();
+
+            _ieManager.UpdateLoop();
+        }
+
+        public Stuff InstantiateStuff(StuffType type)
+        {
+            return m_stuffDictionary.Instantiate(type, _data.IEContainer);
+        }
+
+        public IEManager IEManager
+        {
+            get { return _ieManager; }
+        }
+
+        public ClientManager ClientManager
+        {
+            get { return _clientManager; }
+        }
+
+        public StuffDictionary StuffDictionary
+        {
+            get { return m_stuffDictionary; }
+        }
     }
-    
-    private void Update()
-    {
-        _clientManager.UpdateLoop();
-
-        _ieManager.UpdateLoop();
-    }
-    
-    public IEManager IEManager { get { return _ieManager; } }
-  }
 }

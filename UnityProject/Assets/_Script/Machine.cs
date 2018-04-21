@@ -24,7 +24,7 @@ namespace DefaultNamespace
             State = MachineStates.IDLE;
         }
 
-        public MachineStates State
+        public virtual MachineStates State
         {
             get { return m_state; }
             set
@@ -36,6 +36,10 @@ namespace DefaultNamespace
             }
         }
 
+        protected virtual void OnStateChanged(MachineStates state)
+        {
+        }
+        
         private void UpdateHighlight()
         {
             switch (m_state)
@@ -57,7 +61,6 @@ namespace DefaultNamespace
 
         public StuffType Activate(StuffType stuff)
         {
-            Debug.Log("State " + State);
             if (State == MachineStates.IDLE && (InputTypes.Count == 0 || InputTypes.Contains(stuff)))
             {
                 m_stuffs.Add(stuff);
