@@ -8,6 +8,9 @@ namespace DefaultNamespace
     {
         public StuffType _stuffInHands = StuffType.None;
 
+        [SerializeField]
+        private StuffInHandDisplayer _stuffInHandDisplayer;
+
         private readonly List<IE> iesInVicinity = new List<IE>();
 
         public void Register(IE ie)
@@ -68,6 +71,7 @@ namespace DefaultNamespace
         private void PickupStuff(Stuff stuff)
         {
             _stuffInHands = stuff.m_type;
+            _stuffInHandDisplayer.SetStuffInHand(_stuffInHands);
             stuff.PickUp();
             Debug.LogFormat("Pickup {0}", _stuffInHands);
         }
@@ -76,6 +80,7 @@ namespace DefaultNamespace
         {
             var stuffInHands = _stuffInHands;
             _stuffInHands = machine.Activate(_stuffInHands);
+            _stuffInHandDisplayer.SetStuffInHand(_stuffInHands);
             Debug.LogFormat("Activate Machine Before:{0} After:{1}", stuffInHands, _stuffInHands);
         }
     }
