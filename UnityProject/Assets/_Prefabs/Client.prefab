@@ -52,12 +52,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea28b1e21e604ad99fedfac89b0a6b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attemptMax: 10
+  _want: {fileID: 0}
+  _attemptMax: 100
   _arriveTimestamp: 0
   _state: 0
+  _time: 0
   _waitPosition: {x: 0, y: 0, z: 0}
   _deadPosition: {x: 0, y: 0, z: 0}
   _currentPosition: {x: 0, y: 0, z: 0}
+  _startPosition: {x: 0, y: 0, z: 0}
 --- !u!212 &212986377000275292
 SpriteRenderer:
   m_ObjectHideFlags: 1

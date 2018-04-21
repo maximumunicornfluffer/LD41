@@ -16,10 +16,10 @@ namespace DefaultNamespace
         public ClientState _state;
         public float _time = 0f;
 
-        public Vector3 _waitPosition;
-        public Vector3 _deadPosition;
-        public Vector3 _currentPosition;
-        public Vector3 _startPosition;
+        private Vector3 _waitPosition;
+        private Vector3 _deadPosition;
+        private Vector3 _currentPosition;
+        private Vector3 _startPosition;
         private LevelData _data;
         private ScoreManager _scoreManager;
         

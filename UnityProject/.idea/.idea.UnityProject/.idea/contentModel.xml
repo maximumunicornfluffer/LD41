@@ -22,6 +22,7 @@
         <e p="MusicManager.cs" t="Include" />
         <e p="ScoreManager.cs" t="Include" />
         <e p="Stuff.cs" t="Include" />
+        <e p="StuffInHandDisplayer.cs" t="Include" />
         <e p="UI" t="Include">
           <e p="ActivePlayersUI.cs" t="Include" />
         </e>
