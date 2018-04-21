@@ -78,6 +78,7 @@ namespace Assets.Scripts.PlayerManagement
     }
     
     public Dictionary<string, GetInputMethode> _externalButton = new Dictionary<string, GetInputMethode>();
+    
     public void AddButtonTrigger(string inputName, GetInputMethode getInputMethod)
     {
       _externalButton.Add(inputName,getInputMethod);
