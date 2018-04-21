@@ -20,9 +20,9 @@ namespace DefaultNamespace
     private Character _characterPrefab;
 
     private ClientManager _clientManager;
-
-    private LevelData _data;
+    private IEManager _ieManager = new IEManager();
     
+    private LevelData _data;
     
     void Awake()
     {
@@ -88,6 +88,10 @@ namespace DefaultNamespace
     private void Update()
     {
         _clientManager.UpdateLoop();
+
+      _ieManager.UpdateLoop();
     }
+    
+    public IEManager IEManager { get { return _ieManager; } }
   }
 }

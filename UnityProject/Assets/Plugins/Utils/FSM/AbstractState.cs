@@ -40,22 +40,27 @@ namespace Plugins.Utils.FSM
     public virtual void OnEnter()
     {
       _status = StateStatus.Entering;
-      List<IEnumerator> enumerators = new List<IEnumerator>();
-      foreach (var sceneName in _dynamicScenesName)
-      {
-        enumerators.Add(LoadScene(sceneName));
-      }
 
+      CoroutineManager.Instance.StartCoroutine(LoadScenes());
+    }
+
+    private IEnumerator LoadScenes()
+    {
       var staticSceneName = GetStaticSceneName();
       if (staticSceneName != null)
       {
         foreach (var sceneName in GetStaticSceneName())
         {
-          enumerators.Add(LoadScene(sceneName));
+          yield return LoadScene(sceneName);
         }
-      }
 
-      CoroutineManager.Instance.StartCoroutines(enumerators,OnScenesLoaded);
+        foreach (var sceneName in _dynamicScenesName)
+        {
+          yield return LoadScene(sceneName);
+        }
+        
+        OnScenesLoaded();
+      }
     }
     
     public virtual void OnLeave() {
