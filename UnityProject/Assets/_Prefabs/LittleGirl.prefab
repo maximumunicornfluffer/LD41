@@ -227,7 +227,7 @@ MonoBehaviour:
   _waterSprite: {fileID: 21300000, guid: 02f044e8e5b33c9439e80f369aba191b, type: 3}
   _potatoesSprite: {fileID: 21300000, guid: e8c71dfd79ca22047b2dacbb80d11fee, type: 3}
   _friesSprite: {fileID: 21300000, guid: a7d559b1d3f163349be43a46f0a10c80, type: 3}
-  _corpsSprite: {fileID: 21300000, guid: 2e9a78b46fa030248b02b1383b1096e4, type: 3}
+  _corpsSprite: {fileID: 21300000, guid: 55999d17b156eb84281a1de688e53ff0, type: 3}
   _cinderSprite: {fileID: 21300000, guid: 6d0b901dae27ddb4db2ce6f9f2a6c615, type: 3}
   _icon: {fileID: 212043766737437016}
 --- !u!212 &212043766737437016
