@@ -31,7 +31,6 @@ namespace DefaultNamespace
     
     void Start ()
     {
-      
       _data = FindObjectOfType<LevelData>();
      
       _clientManager = gameObject.GetComponent<ClientManager>();

@@ -15,8 +15,10 @@
         <e p="GameManager.cs" t="Include" />
         <e p="IE.cs" t="Include" />
         <e p="LevelData.cs" t="Include" />
+        <e p="MusicManager.cs" t="Include" />
         <e p="Processor.cs" t="Include" />
         <e p="Provider.cs" t="Include" />
+        <e p="ScoreManager.cs" t="Include" />
         <e p="Service.cs" t="Include" />
         <e p="States.cs" t="Include" />
         <e p="Stuff.cs" t="Include" />
@@ -89,6 +91,23 @@
             <e p="StateStatus.cs" t="Include" />
           </e>
           <e p="Option.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Assets\Scripts" t="Include">
+        <e p="Common" t="Include">
+          <e p="Extensions.cs" t="Include" />
+          <e p="Graphics" t="Include">
+            <e p="ActorsLite" t="Include">
+              <e p="ActorActionViewLite.cs" t="Include" />
+              <e p="ActorStateViewLite.cs" t="Include" />
+              <e p="ActorViewLite.cs" t="Include" />
+            </e>
+          </e>
+          <e p="ManagerChecker.cs" t="Include" />
+          <e p="Properties" t="Include">
+            <e p="AssemblyInfo.cs" t="Include" />
+          </e>
+          <e p="RemoveTimer.cs" t="Include" />
         </e>
       </e>
       <e p="Assets\Starter" t="Include">

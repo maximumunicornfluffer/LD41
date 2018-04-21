@@ -7,8 +7,6 @@ namespace DefaultNamespace
 {
     public class Client : MonoBehaviour
     {
-        private Rigidbody2D _rb;
-
         public Stuff _want;
 
         public float _attemptMax = 10f;
@@ -23,18 +21,24 @@ namespace DefaultNamespace
         public Vector3 _currentPosition;
         public Vector3 _startPosition;
         private LevelData _data;
-
+        private ScoreManager _scoreManager;
+        
         void Awake()
         {
             _data = FindObjectOfType<LevelData>();
+            InitializeLocation();
+            _arriveTimestamp = Time.realtimeSinceStartup;
+            _scoreManager = FindObjectOfType<ScoreManager>();
+            _state = ClientState.Arrive;
+        }
+
+        private void InitializeLocation()
+        {
             _startPosition = _currentPosition = _data.ClientPoints[0].localPosition;
             _waitPosition = _data.ClientPoints[1].localPosition;
             _deadPosition = _data.ClientPoints[2].localPosition;
 
             transform.localPosition = _startPosition;
-            _arriveTimestamp = Time.realtimeSinceStartup;
-            _rb = GetComponent<Rigidbody2D>();
-            _state = ClientState.Arrive;
         }
 
         public void UpdateLoop()
@@ -63,7 +67,6 @@ namespace DefaultNamespace
         {
             float newPosition = 0f;
             _time += Time.deltaTime;
-            Debug.LogError($"time {_time}");
             switch (_state)
             {
                 case ClientState.Arrive:
@@ -99,6 +102,7 @@ namespace DefaultNamespace
             if (_want.GetType() == inputStuff.GetType())
             {
                 _state = ClientState.IsServed;
+                _scoreManager.Add(10);
                 return true;
             }
 
