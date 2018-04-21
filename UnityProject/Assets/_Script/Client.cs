@@ -8,7 +8,7 @@ namespace DefaultNamespace
 {
     public class Client : MonoBehaviour
     {
-        public StuffType _want;
+        public StuffType _want = StuffType.Fries;
 
         public float _waitMax = 10f;
 
@@ -32,8 +32,7 @@ namespace DefaultNamespace
             InitializeLocation();
             
             _scoreManager = FindObjectOfType<ScoreManager>();
-            _state = ClientState.Arrive;
-            _animator.SetInteger("State", (int)_state);
+            ChangeState(ClientState.Arrive);
         }
 
         private void InitializeLocation()
@@ -57,14 +56,11 @@ namespace DefaultNamespace
                 case ClientState.Wait:
                     if (GetAttemptTime() > _waitMax)
                     {
-                        _state = ClientState.QuitAngry;
-                        _animator.SetInteger("State", (int)_state);
+                        ChangeState(ClientState.QuitAngry);
                     }
-
                     break;
                 case ClientState.IsServed:
-                    _state = ClientState.QuitHappy;
-                    _animator.SetInteger("State", (int)_state);
+                    ChangeState(ClientState.QuitHappy);
                     break;
             }
         }
@@ -90,16 +86,14 @@ namespace DefaultNamespace
             if (Mathf.Approximately(_currentPosition.y,_waitPosition.y))
             {
                 _arriveTimestamp = Time.realtimeSinceStartup;
-                _state = ClientState.Wait;
-                _animator.SetInteger("State", (int)_state);
+                ChangeState(ClientState.Wait);
                 _time = 0;
                 _startPosition = _currentPosition;
             }
 
             if (Mathf.Approximately(_currentPosition.y,_deadPosition.y))
             {
-                _state = ClientState.ImDead;
-                _animator.SetInteger("State", (int)_state);
+                ChangeState(ClientState.ImDead);
             }
         }
 
@@ -110,20 +104,22 @@ namespace DefaultNamespace
 
         public bool GiveStuff(StuffType inputStuff)
         {
-            if (_want.GetType() == inputStuff.GetType())
-            {
-                _state = ClientState.IsServed;
-                _animator.SetInteger("State", (int)_state);
-                _scoreManager.Add(10);
-                return true;
-            }
+            if (_want.GetType() != inputStuff.GetType()) 
+                return false;
+            ChangeState(ClientState.IsServed);
+            _scoreManager.Add(10);
+            return true;
+        }
 
-            return false;
+        private void ChangeState(ClientState state)
+        {
+            _state = state;
+            _animator.SetInteger("State", (int) _state);
         }
 
         public void OnDeathAnimationEnd()
         {
-            // instantié un prefab
+            // TODO instantié un corpse prefab!!!!!!!!!!!!!!!!!!!!!!!!!!!
             Destroy(gameObject);
         }
     }

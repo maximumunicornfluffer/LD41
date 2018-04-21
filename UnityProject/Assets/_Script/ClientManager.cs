@@ -15,8 +15,12 @@ namespace DefaultNamespace
         {
             _clients = new Collection<Client>();
 
-            var client = Instantiate(_clientPrefab);
+            AddNewClient();
+        }
 
+        private void AddNewClient()
+        {
+            var client = Instantiate(_clientPrefab);
             _clients.Add(client);
             _lastClientPop = Time.time;
         }
@@ -25,9 +29,7 @@ namespace DefaultNamespace
         {
             if ((Time.time - _lastClientPop) > 20 && _clients.Count < 10 )
             {
-                _lastClientPop = Time.time;
-                var newclient = Instantiate(_clientPrefab);
-                _clients.Add(newclient);
+                AddNewClient();
             }
             
             foreach (var client in _clients)
