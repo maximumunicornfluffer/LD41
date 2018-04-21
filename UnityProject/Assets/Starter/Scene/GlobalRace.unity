@@ -77,15 +77,18 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ShowResolutionOverlay: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -107,6 +110,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &41244303
 GameObject:
@@ -357,7 +362,7 @@ MonoBehaviour:
     _action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 888818617}
+        - m_Target: {fileID: 0}
           m_MethodName: Restart
           m_Mode: 1
           m_Arguments:
@@ -368,13 +373,13 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
   - _name: Leave
     _action:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 888818617}
+        - m_Target: {fileID: 0}
           m_MethodName: Leave
           m_Mode: 1
           m_Arguments:
@@ -385,8 +390,8 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!114 &497440414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -625,7 +630,6 @@ GameObject:
   - component: {fileID: 826129203}
   - component: {fileID: 826129202}
   - component: {fileID: 826129201}
-  - component: {fileID: 826129206}
   m_Layer: 0
   m_Name: RaceCamera
   m_TagString: MainCamera
@@ -674,7 +678,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 2.5
+  orthographic size: 9
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -685,11 +689,11 @@ Camera:
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &826129205
 Transform:
   m_ObjectHideFlags: 0
@@ -703,18 +707,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &826129206
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 826129200}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e49ea892de2d419f9a447388f9057163, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _offset: {x: 2.5, y: 1, z: 0}
 --- !u!1 &888818615
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +715,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 888818616}
-  - component: {fileID: 888818617}
+  - component: {fileID: 888818618}
   m_Layer: 0
   m_Name: RaceManager
   m_TagString: Untagged
@@ -744,7 +736,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &888818617
+--- !u!114 &888818618
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -752,16 +744,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 888818615}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f87f082fcd345529b69031df6272eca, type: 3}
+  m_Script: {fileID: 11500000, guid: d91c0917bde113046987831c4b68a949, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterPrefab: {fileID: 114909214950454774, guid: f306197f199503b4993c0a3dc4a89233,
+  _characterPrefab: {fileID: 114180019470431672, guid: 0c16572c1bafc9644b1c73caef674d3e,
     type: 2}
-  _camera: {fileID: 826129206}
-  _countDownUI: {fileID: 1118561317}
-  _restartOrLeaveUI: {fileID: 497440413}
-  _openRestartOrLeaveButton: {fileID: 41244305}
-  _mobileControllerUi: {fileID: 55640921}
 --- !u!1 &932281274
 GameObject:
   m_ObjectHideFlags: 0
