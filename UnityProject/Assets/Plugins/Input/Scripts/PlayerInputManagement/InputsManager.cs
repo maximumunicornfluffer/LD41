@@ -101,9 +101,10 @@ public class InputsManager : MonoBehaviour ,IPreUpdate
 
   public void ForceCreateMainPlayer()
   {
-    if (_mainPlayerInput == null)
+    var indexes = PlayerInputUtils.GetValidInputIndexes();
+    if (_mainPlayerInput == null && indexes.Count>0)
     {
-      CreatePlayer(1, PadUsedType.SINGLE);
+      CreatePlayer(indexes.First(), PadUsedType.SINGLE);
     }
   }
 
