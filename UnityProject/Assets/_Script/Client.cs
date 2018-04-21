@@ -74,7 +74,7 @@ namespace DefaultNamespace
                     break;
                 case ClientState.QuitAngry:
                 case ClientState.QuitHappy:
-                    newPosition = Mathf.Lerp(_startPosition.y, _deadPosition.y, _time / 5f);
+                    newPosition = Mathf.Lerp(_startPosition.y, _deadPosition.y, _time / 2f);
                     break;
             }
 
@@ -84,6 +84,8 @@ namespace DefaultNamespace
             if (_currentPosition == _waitPosition)
             {
                 _state = ClientState.Wait;
+                _time = 0;
+                _startPosition = _currentPosition;
             }
 
             if (_currentPosition == _deadPosition)
