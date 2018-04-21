@@ -21,3 +21,9 @@ public class ActorActionViewLite
     public float CurrentTimer;
 }
 
+[Serializable]
+public class SpriteAnimationView
+{
+    public List<Sprite> Sprites;
+}
+

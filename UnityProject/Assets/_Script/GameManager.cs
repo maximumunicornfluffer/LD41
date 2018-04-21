@@ -19,6 +19,8 @@ namespace DefaultNamespace
     [SerializeField]
     private Character _characterPrefab;
 
+    private ClientManager _clientManager;
+
     private LevelData _data;
     
     
@@ -29,9 +31,10 @@ namespace DefaultNamespace
     
     void Start ()
     {
-      
       _data = FindObjectOfType<LevelData>();
      
+      _clientManager = gameObject.GetComponent<ClientManager>();
+      
       InitializePlayers();
       
 //      InputsManager.Instance.AutoUpdate = false;
@@ -80,6 +83,11 @@ namespace DefaultNamespace
 
         i++;
       }
+    }
+    
+    private void Update()
+    {
+        _clientManager.UpdateLoop();
     }
   }
 }

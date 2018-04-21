@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ActorViewLite : MonoBehaviour
 {
-    public Entity ParentActor;
 
     public List<ActorActionViewLite> Actions = new List<ActorActionViewLite>();
     public List<ActorStateViewLite> States = new List<ActorStateViewLite>();
@@ -196,13 +195,6 @@ public class ActorViewLite : MonoBehaviour
         }
         return null;
     }
-
-    internal void SetParent(Entity parent)
-    {
-        ParentActor = parent;
-    }
-
-
 
     int m_currentFrame;
     SpriteRenderer m_spriteRenderer;
