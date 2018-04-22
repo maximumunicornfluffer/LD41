@@ -59,7 +59,7 @@ namespace DefaultNamespace
                 foreach (var ie in iesInVicinity.Where(e => e.Type == IEType.Machine))
                 {
                     var machine = ie as Machine;
-                    if (machine.State == MachineStates.IDLE &&
+                    if (machine.IsIdle &&
                         (machine.InputTypes.Count == 0 && StuffInHands == StuffType.None || machine.NeededStuff() == StuffInHands))
                     {
                         ActivateMachine(machine);
