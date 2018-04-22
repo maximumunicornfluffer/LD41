@@ -17,7 +17,7 @@ namespace DefaultNamespace
         public ClientState _state;
         public float _time = 0f;
 
-		public MusicManager _musicManager;
+        public MusicManager _musicManager;
 
         public Vector3 _waitPosition;
         private Vector3 _deadPosition;
@@ -27,8 +27,8 @@ namespace DefaultNamespace
         private ScoreManager _scoreManager;
         private Animator _animator;
 
-		//Sfx
-		private AudioSource _audioSource;
+        //Sfx
+        private AudioSource _audioSource;
 
         public void SetOrder(int order)
         {
@@ -44,10 +44,9 @@ namespace DefaultNamespace
             _scoreManager = FindObjectOfType<ScoreManager>();
             ChangeState(ClientState.Arrive);
 
-			_audioSource = gameObject.AddComponent<AudioSource>();
-			_audioSource.loop = true;
-			_audioSource.volume = 1.0f;
-
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.loop = true;
+            _audioSource.volume = 1.0f;
         }
 
         private void InitializeLocation()
@@ -66,7 +65,7 @@ namespace DefaultNamespace
                 case ClientState.Arrive:
                 case ClientState.QuitAngry:
                 case ClientState.QuitHappy:
-                    case ClientState.QueueMove:
+                case ClientState.QueueMove:
                     Move();
                     break;
                 case ClientState.Wait:
@@ -129,7 +128,13 @@ namespace DefaultNamespace
             if (_want.GetType() != inputStuff.GetType())
                 return false;
             ChangeState(ClientState.IsServed);
-            _scoreManager.Add(10);
+
+            if (GetAttemptTime() < 10)
+                _scoreManager.Add(10);
+            else if (GetAttemptTime() < 20)
+                _scoreManager.Add(5);
+            else if (GetAttemptTime() < 30)
+                _scoreManager.Add(1);
             return true;
         }
 
@@ -139,22 +144,22 @@ namespace DefaultNamespace
             _animator.SetInteger("State", (int) _state);
         }
 
-		public void OnEatAnimationStart(AudioClip audioClip)
-		{
-			_audioSource.clip = audioClip;
-			_audioSource.Play();
-		}
+        public void OnEatAnimationStart(AudioClip audioClip)
+        {
+            _audioSource.clip = audioClip;
+            _audioSource.Play();
+        }
 
-		public void OnEatAnimationEnd()
-		{
-			_audioSource.Stop();
-		}
+        public void OnEatAnimationEnd()
+        {
+            _audioSource.Stop();
+        }
 
-		public void OnDeathAnimationStart()
-		{
-			//Debug.Log("death animation start!!!");
-			_musicManager.PlayDarkEvent();
-		}
+        public void OnDeathAnimationStart()
+        {
+            //Debug.Log("death animation start!!!");
+            _musicManager.PlayDarkEvent();
+        }
 
         public void OnDeathAnimationEnd()
         {
