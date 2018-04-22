@@ -15,13 +15,16 @@ namespace DefaultNamespace
 		//Sfx
 		private AudioSource _audioSource;
 		private AudioClip catchClip;
+        private Animator _animator;
 
-		void Start() {
+        void Start() {
 			_audioSource = gameObject.AddComponent<AudioSource>();
 			_audioSource.loop = true;
 			_audioSource.volume = 1.0f;
 
 			catchClip = GameManager.Instance.m_audioResources.catchSound;
+
+		    _animator = GetComponent<Animator>();
 		}
 
         private StuffType StuffInHands
@@ -35,6 +38,8 @@ namespace DefaultNamespace
 
                 if (_stuffInHandDisplayer)
                     _stuffInHandDisplayer.SetStuffInHand(_stuffInHands);
+                
+                _animator.SetBool("isCarrying", _stuffInHands!=StuffType.None);
             }
         }
 
