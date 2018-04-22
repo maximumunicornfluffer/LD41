@@ -13,3 +13,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   catchSound: {fileID: 8300000, guid: 07cda62e839468f4a9551a6ec5c43077, type: 3}
   catchWaterSound: {fileID: 8300000, guid: ebd55c586ce6d6c4e9a6b3d5660fc8d8, type: 3}
+  earthSound: {fileID: 8300000, guid: e2c4fd5f4293040f0b37f358926b8b7a, type: 3}
+  cookedSound: {fileID: 8300000, guid: 9b7ce62b6bbfa401f91f23acbe081f1c, type: 3}

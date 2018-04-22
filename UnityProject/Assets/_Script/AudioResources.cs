@@ -7,6 +7,8 @@ namespace DefaultNamespace
 	{
 		public AudioClip catchSound;
 		public AudioClip catchWaterSound;
+		public AudioClip earthSound;
+		public AudioClip cookedSound;
 	}
 }
 
