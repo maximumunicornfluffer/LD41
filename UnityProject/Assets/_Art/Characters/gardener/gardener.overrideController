@@ -5,14 +5,14 @@ AnimatorOverrideController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: death_man
+  m_Name: gardener
   m_Controller: {fileID: 9100000, guid: 8efa1a1a20dfacf4b9aa3db2f7a3e1cc, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: d32c6796522e6bc4db174c6a8d42f2fd, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 3d3ee8134e2d2224093e0aad01b26be4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 70d6af0919b986f4f81625e6b22cbe17, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: 7397fa3f5e38b0f4e96cf6b0b0f20192, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: be842cdc2b9fefc4eb8cdeb99d8f93fb, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 14bfbb56ecdc7b742b3a46233ce8d8a7, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: fa0197c307b9db64ea36789e94791959, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: 50d66e91fefd9c041a33614fb99f9272, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3d866b6c3a9f3eb4982da335cf85c92a, type: 2}
   - m_OriginalClip: {fileID: 7400000, guid: b4df3463be78fe741a5b065965ec0123, type: 2}
-    m_OverrideClip: {fileID: 7400000, guid: c33c6ac840bdccc44816007ae08a0866, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 51c8eb64fe6743b4fb3d0e4dabfb29ff, type: 2}
