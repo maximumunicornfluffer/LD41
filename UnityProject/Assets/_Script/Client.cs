@@ -17,6 +17,8 @@ namespace DefaultNamespace
         public ClientState _state;
         public float _time = 0f;
 
+		public MusicManager _musicManager;
+
         public Vector3 _waitPosition;
         private Vector3 _deadPosition;
         public Vector3 _currentPosition;
@@ -126,6 +128,22 @@ namespace DefaultNamespace
             _state = state;
             _animator.SetInteger("State", (int) _state);
         }
+
+		public void OnEatAnimationStart()
+		{
+
+		}
+
+		public void OnEatAnimationEnd()
+		{
+
+		}
+
+		public void OnDeathAnimationStart()
+		{
+			//Debug.Log("death animation start!!!");
+			_musicManager.PlayDarkEvent();
+		}
 
         public void OnDeathAnimationEnd()
         {

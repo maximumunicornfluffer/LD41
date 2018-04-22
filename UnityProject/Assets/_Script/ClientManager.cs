@@ -15,6 +15,8 @@ namespace DefaultNamespace
         private Vector3[] _waitPositionsPossible;
         private LevelData _data;
 
+		public MusicManager _musicManager;
+
         private void GenerateWaitPoints()
         {
             _data = FindObjectOfType<LevelData>();
@@ -53,7 +55,7 @@ namespace DefaultNamespace
                 break;
             }
 
-
+			client._musicManager = _musicManager;
             _clients.Add(client);
             _lastClientPop = Time.time;
         }
