@@ -76,7 +76,7 @@ namespace DefaultNamespace
         {
             RefreshClientList();
 
-            if ((Time.time - _lastClientPop) > 1 && _clients.Count < 10)
+            if ((Time.time - _lastClientPop) > 20 && _clients.Count < 10)
             {
                 AddNewClient();
             }
