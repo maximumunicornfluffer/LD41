@@ -7,6 +7,7 @@
         IsServed=2,
         QuitHappy=3,
         QuitAngry=4,
-        ImDead=5
+        ImDead=5,
+        QueueMove
     }
 }

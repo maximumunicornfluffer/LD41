@@ -14,23 +14,28 @@ namespace DefaultNamespace
 
         public float _arriveTimestamp;
 
-        private ClientState _state;
+        public ClientState _state;
         public float _time = 0f;
 
-        private Vector3 _waitPosition;
+        public Vector3 _waitPosition;
         private Vector3 _deadPosition;
-        private Vector3 _currentPosition;
+        public Vector3 _currentPosition;
         private Vector3 _startPosition;
         private LevelData _data;
         private ScoreManager _scoreManager;
         private Animator _animator;
-        
+
+        public void SetOrder(int order)
+        {
+            GetComponent<SpriteRenderer>().sortingOrder = 100 - order;
+        }
+
         void Awake()
         {
             _animator = GetComponent<Animator>();
             _data = FindObjectOfType<LevelData>();
             InitializeLocation();
-            
+
             _scoreManager = FindObjectOfType<ScoreManager>();
             ChangeState(ClientState.Arrive);
         }
@@ -40,8 +45,8 @@ namespace DefaultNamespace
             _startPosition = _currentPosition = _data.ClientPoints[0].localPosition;
             _waitPosition = _data.ClientPoints[1].localPosition;
             _deadPosition = _data.ClientPoints[2].localPosition;
-
-            transform.localPosition = _startPosition;
+            _currentPosition.x = _currentPosition.x + (Random.Range(-0.005f, 0.005f));
+            transform.localPosition = _currentPosition;
         }
 
         public void UpdateLoop()
@@ -51,6 +56,7 @@ namespace DefaultNamespace
                 case ClientState.Arrive:
                 case ClientState.QuitAngry:
                 case ClientState.QuitHappy:
+                    case ClientState.QueueMove:
                     Move();
                     break;
                 case ClientState.Wait:
@@ -58,6 +64,7 @@ namespace DefaultNamespace
                     {
                         ChangeState(ClientState.QuitAngry);
                     }
+
                     break;
                 case ClientState.IsServed:
                     ChangeState(ClientState.QuitHappy);
@@ -78,12 +85,15 @@ namespace DefaultNamespace
                 case ClientState.QuitHappy:
                     newPosition = Mathf.Lerp(_startPosition.y, _deadPosition.y, _time / 2f);
                     break;
+                case ClientState.QueueMove:
+                    newPosition = Mathf.Lerp(_startPosition.y, _waitPosition.y, _time / 1f);
+                    break;
             }
 
-            transform.localPosition = new Vector3(_currentPosition.x, newPosition, _currentPosition.z);
-            _currentPosition = transform.localPosition;
+            var newVector = new Vector3(_currentPosition.x, newPosition, _currentPosition.z);
+            SetPosition(newVector);
 
-            if (Mathf.Approximately(_currentPosition.y,_waitPosition.y))
+            if (Mathf.Approximately(_currentPosition.y, _waitPosition.y))
             {
                 _arriveTimestamp = Time.realtimeSinceStartup;
                 ChangeState(ClientState.Wait);
@@ -91,7 +101,7 @@ namespace DefaultNamespace
                 _startPosition = _currentPosition;
             }
 
-            if (Mathf.Approximately(_currentPosition.y,_deadPosition.y))
+            if (Mathf.Approximately(_currentPosition.y, _deadPosition.y))
             {
                 ChangeState(ClientState.ImDead);
             }
@@ -104,14 +114,14 @@ namespace DefaultNamespace
 
         public bool GiveStuff(StuffType inputStuff)
         {
-            if (_want.GetType() != inputStuff.GetType()) 
+            if (_want.GetType() != inputStuff.GetType())
                 return false;
             ChangeState(ClientState.IsServed);
             _scoreManager.Add(10);
             return true;
         }
 
-        private void ChangeState(ClientState state)
+        public void ChangeState(ClientState state)
         {
             _state = state;
             _animator.SetInteger("State", (int) _state);
@@ -122,6 +132,12 @@ namespace DefaultNamespace
             var corpse = GameManager.Instance.InstantiateStuff(StuffType.Corpes);
             corpse.transform.position = transform.position;
             Destroy(gameObject);
+        }
+
+        public void SetPosition(Vector3 vector3)
+        {
+            transform.localPosition = new Vector3(vector3.x, vector3.y, vector3.z);
+            _currentPosition = transform.localPosition;
         }
     }
 }
