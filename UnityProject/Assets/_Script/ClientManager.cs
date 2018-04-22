@@ -1,4 +1,6 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
@@ -8,12 +10,12 @@ namespace DefaultNamespace
     {
         [SerializeField]
         private Client _clientPrefab;
-        private Collection<Client> _clients;
+        private List<Client> _clients;
         private float _lastClientPop;
 
         void Start()
         {
-            _clients = new Collection<Client>();
+            _clients = new List<Client>();
 
             AddNewClient();
         }
@@ -27,11 +29,13 @@ namespace DefaultNamespace
 
         public void UpdateLoop()
         {
+            RefreshClientList();
+            
             if ((Time.time - _lastClientPop) > 20 && _clients.Count < 10 )
             {
                 AddNewClient();
             }
-            
+
             foreach (var client in _clients)
             {
                 {
@@ -40,8 +44,15 @@ namespace DefaultNamespace
             }
         }
 
+        private void RefreshClientList()
+        {
+            _clients = _clients.Where(c => c != null).ToList();
+        }
+
         public void GiveStuff(StuffType inputStuff)
         {
+            RefreshClientList();
+            
             foreach (var client in _clients)
             {
                 if (client.GiveStuff(inputStuff))
