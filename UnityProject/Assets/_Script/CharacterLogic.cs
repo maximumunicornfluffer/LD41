@@ -60,7 +60,7 @@ namespace DefaultNamespace
                 {
                     var machine = ie as Machine;
                     if (machine.State == MachineStates.IDLE &&
-                        (machine.InputTypes.Count == 0 || machine.InputTypes.Contains(StuffInHands)))
+                        (machine.InputTypes.Count == 0 && StuffInHands == StuffType.None || machine.NeededStuff() == StuffInHands))
                     {
                         ActivateMachine(machine);
                         found = true;

@@ -4,6 +4,7 @@
     {
         protected override void OnStateChanged(MachineStates state)
         {
+            base.OnStateChanged(state);
             if (InputTypes.Count == 0)
                 return;
             if (state == MachineStates.FULL)

@@ -6,6 +6,7 @@ namespace DefaultNamespace
     
     public class Machine : IE
     {
+        [SerializeField] private StuffInHandDisplayer _stuffInHandDisplayer;
         public List<StuffType> InputTypes;
         public StuffType OutputType = StuffType.None;
         public float processingDuration;
@@ -22,6 +23,7 @@ namespace DefaultNamespace
         {
             base.Awake();
             State = MachineStates.IDLE;
+            UpdateDisplay();
         }
 
         public virtual MachineStates State
@@ -33,11 +35,13 @@ namespace DefaultNamespace
                     return;
                 m_state = value;
                 UpdateHighlight();
+                OnStateChanged(m_state);
             }
         }
 
         protected virtual void OnStateChanged(MachineStates state)
         {
+            UpdateDisplay();
         }
         
         private void UpdateHighlight()
@@ -59,11 +63,37 @@ namespace DefaultNamespace
             }
         }
 
+        private void UpdateDisplay()
+        {
+            if (InputTypes.Count != 0 && State == MachineStates.IDLE && !HasAllIngredients())
+            {
+                var neededStuff = NeededStuff();
+                _stuffInHandDisplayer.SetStuffInHand(neededStuff);
+                return;
+            }
+            
+            _stuffInHandDisplayer.SetStuffInHand(StuffType.None);
+        }
+
+        public StuffType NeededStuff()
+        {
+            foreach (var neededStuff in InputTypes)
+            {
+                if (!m_stuffs.Contains(neededStuff))
+                {
+                    return neededStuff;
+                }
+            }
+
+            return StuffType.None;
+        }
+
         public StuffType Activate(StuffType stuff)
         {
-            if (State == MachineStates.IDLE && (InputTypes.Count == 0 || InputTypes.Contains(stuff)))
+            if (State == MachineStates.IDLE && InputTypes.Count != 0 && NeededStuff() == stuff)
             {
                 m_stuffs.Add(stuff);
+                UpdateDisplay();
             }
 
             if (State == MachineStates.IDLE && HasAllIngredients())
