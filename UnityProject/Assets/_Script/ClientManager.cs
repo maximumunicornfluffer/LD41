@@ -65,9 +65,9 @@ namespace DefaultNamespace
         private Client DetermineClientType()
         {
             var random = Random.Range(0, 151);
-            /*if (random < 50)
+            if (random < 50)
                 return _clientPrefab;
-            if (random < 100)*/
+            if (random < 100)
                 return _kidClientPrefab;
             return _titineClientPrefab;
         }

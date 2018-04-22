@@ -75,6 +75,7 @@ MonoBehaviour:
   _arriveTimestamp: 0
   _state: 0
   _time: 0
+  _musicManager: {fileID: 0}
   _waitPosition: {x: -1.43, y: -0.33, z: 0}
   _currentPosition: {x: -1.4286301, y: 1.48, z: 0}
 --- !u!212 &212608388604684942
