@@ -666,6 +666,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _clientPrefab: {fileID: 114024781293937676, guid: 36160fc9899bf4347aefc3bc5c31fd1b,
     type: 2}
+  _kidClientPrefab: {fileID: 114770698281567500, guid: 0d80b344c7af536468d7d84faa853dcc,
+    type: 2}
 --- !u!114 &888818618
 MonoBehaviour:
   m_ObjectHideFlags: 0
