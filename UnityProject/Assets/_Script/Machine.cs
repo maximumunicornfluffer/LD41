@@ -13,7 +13,6 @@ namespace DefaultNamespace
         public MachineStates m_startState = MachineStates.IDLE;
         public float processingDuration;
         
-        
         public override IEType Type { get { return IEType.Machine; } }
 
         private HashSet<StuffType> m_stuffs = new HashSet<StuffType>();
@@ -22,6 +21,13 @@ namespace DefaultNamespace
         private float m_processingEndTime;
 
         private Animator m_animator;
+
+		//Sfx
+
+		public AudioClip _audioClip;
+		public bool shouldLoopAudio = false;
+		private AudioSource _audioSource;
+		//private AudioClip catchClip;
         
         protected override void Awake()
         {
@@ -30,6 +36,15 @@ namespace DefaultNamespace
             State = m_startState;
             UpdateDisplay();
         }
+
+		void Start() {
+			_audioSource = gameObject.AddComponent<AudioSource>();
+			_audioSource.loop = shouldLoopAudio;
+			_audioSource.volume = 1.0f;
+
+			_audioSource.clip = _audioClip;
+			//catchClip = GameManager.Instance.m_audioResources.catchSound;
+		}
 
         public MachineStates State
         {
@@ -47,6 +62,11 @@ namespace DefaultNamespace
         protected virtual void OnStateChanged(MachineStates state)
         {
             UpdateDisplay();
+			if (state == MachineStates.PROCESSING) {
+				StartProcessingSound();
+			} else if (state == MachineStates.FULL) {
+				StopProcessingSound();
+			}
         }
         
         private void UpdateHighlight()
@@ -154,8 +174,9 @@ namespace DefaultNamespace
 
         public override void UpdateLoop()
         {
-            if (State == MachineStates.PROCESSING)
+			if (State == MachineStates.PROCESSING) {
                 CheckProcessing();
+			} 
         }
 
         private void CheckProcessing()
@@ -166,5 +187,17 @@ namespace DefaultNamespace
                 State = MachineStates.FULL;
             }
         }
+
+		private void StartProcessingSound() {
+			Debug.Log("start sound");
+			_audioSource.Play();
+		}
+
+		private void StopProcessingSound() {
+			if (shouldLoopAudio) {
+				_audioSource.Stop();
+			}
+			Debug.Log("stop sound");
+		}
     }
 }

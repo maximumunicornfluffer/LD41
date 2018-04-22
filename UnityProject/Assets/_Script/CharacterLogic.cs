@@ -14,11 +14,14 @@ namespace DefaultNamespace
 
 		//Sfx
 		private AudioSource _audioSource;
+		private AudioClip catchClip;
 
 		void Start() {
 			_audioSource = gameObject.AddComponent<AudioSource>();
 			_audioSource.loop = true;
 			_audioSource.volume = 1.0f;
+
+			catchClip = GameManager.Instance.m_audioResources.catchSound;
 		}
 
         private StuffType StuffInHands
@@ -29,6 +32,7 @@ namespace DefaultNamespace
                 if (_stuffInHands == value)
                     return;
                 _stuffInHands = value;
+
                 if (_stuffInHandDisplayer)
                     _stuffInHandDisplayer.SetStuffInHand(_stuffInHands);
             }
@@ -68,6 +72,7 @@ namespace DefaultNamespace
                 foreach (var ie in iesInVicinity.Where(e => e.Type == IEType.Machine))
                 {
                     var machine = ie as Machine;
+
                     if (machine.IsIdle &&
                         (machine.InputTypes.Count == 0 && StuffInHands == StuffType.None || machine.NeededStuff() == StuffInHands))
                     {
@@ -95,13 +100,25 @@ namespace DefaultNamespace
 
         private void PickupStuff(Stuff stuff)
         {
+			PlayCatchSound();
             StuffInHands = stuff.m_type;
             stuff.PickUp();
         }
 
+		private void PlayCatchSound() {
+			_audioSource.clip = catchClip;
+			_audioSource.loop = false;
+			_audioSource.Play();
+		}
+
         public void ActivateMachine(Machine machine)
         {
             StuffInHands = machine.Activate(_stuffInHands);
+			if (StuffInHands == StuffType.Water) {
+
+			} else if (StuffInHands != StuffType.None) {
+				PlayCatchSound();
+			}
         }
     }
 }
