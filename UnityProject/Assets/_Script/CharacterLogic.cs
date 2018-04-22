@@ -12,6 +12,15 @@ namespace DefaultNamespace
 
         private readonly List<IE> iesInVicinity = new List<IE>();
 
+		//Sfx
+		private AudioSource _audioSource;
+
+		void Start() {
+			_audioSource = gameObject.AddComponent<AudioSource>();
+			_audioSource.loop = true;
+			_audioSource.volume = 1.0f;
+		}
+
         private StuffType StuffInHands
         {
             get { return _stuffInHands; }

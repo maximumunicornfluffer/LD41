@@ -28,8 +28,7 @@ namespace DefaultNamespace
         private Animator _animator;
 
 		//Sfx
-		private AudioClip EatClip;
-		private AudioSource ClientAudioSource;
+		private AudioSource _audioSource;
 
         public void SetOrder(int order)
         {
@@ -45,14 +44,9 @@ namespace DefaultNamespace
             _scoreManager = FindObjectOfType<ScoreManager>();
             ChangeState(ClientState.Arrive);
 
-			gameObject.AddComponent<AudioSource>();
-			AudioSource[] allAudioSources = GetComponents<AudioSource>();
-			ClientAudioSource = allAudioSources[0];
-
-			EatClip = (AudioClip)Resources.Load("crouchcrouch", typeof(AudioClip));
-
-			ClientAudioSource.clip = EatClip;
-			ClientAudioSource.loop = true;
+			_audioSource = gameObject.AddComponent<AudioSource>();
+			_audioSource.loop = true;
+			_audioSource.volume = 1.0f;
 
         }
 
@@ -145,14 +139,15 @@ namespace DefaultNamespace
             _animator.SetInteger("State", (int) _state);
         }
 
-		public void OnEatAnimationStart()
+		public void OnEatAnimationStart(AudioClip audioClip)
 		{
-			ClientAudioSource.Play();
+			_audioSource.clip = audioClip;
+			_audioSource.Play();
 		}
 
 		public void OnEatAnimationEnd()
 		{
-			ClientAudioSource.Stop();
+			_audioSource.Stop();
 		}
 
 		public void OnDeathAnimationStart()

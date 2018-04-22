@@ -79,7 +79,6 @@ public class MusicManager : MonoBehaviour {
 
 		if (currentAudioStatus == audioStatus.dark) {
 			timeInTheDark = timeInTheDark + Time.deltaTime;
-			Debug.Log(timeInTheDark);
 			if (timeInTheDark > timeToWaitInTheDark) {
 				currentAudioStatus = audioStatus.fadeOut;
 			}

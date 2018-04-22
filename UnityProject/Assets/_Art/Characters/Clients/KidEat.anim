@@ -81,7 +81,8 @@ AnimationClip:
   - time: 0
     functionName: OnEatAnimationStart
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 8300000, guid: 8b359207e05ef45f7810fbe8c44c4d9b,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
