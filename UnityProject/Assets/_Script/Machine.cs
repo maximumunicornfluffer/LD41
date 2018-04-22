@@ -131,13 +131,21 @@ namespace DefaultNamespace
             if (InputTypes.Count != 0 && IsIdle && !HasAllIngredients())
             {
                 var neededStuff = NeededStuff();
-                _stuffInHandDisplayer.SetStuffInHand(neededStuff);
+                SetStuffInHand(neededStuff);
                 return;
             }
 
-            _stuffInHandDisplayer.SetStuffInHand(StuffType.None);
+            SetStuffInHand(StuffType.None);
         }
 
+        private void SetStuffInHand(StuffType t)
+        {
+            if (!_stuffInHandDisplayer)
+                return;
+            
+            _stuffInHandDisplayer.SetStuffInHand(t);
+        }
+        
         public StuffType NeededStuff()
         {
             foreach (var neededStuff in InputTypes)

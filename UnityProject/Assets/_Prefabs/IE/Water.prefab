@@ -174,7 +174,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1997230486690180}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4749077372598832}
@@ -276,7 +276,10 @@ MonoBehaviour:
   _stuffInHandDisplayer: {fileID: 114907567730614140}
   InputTypes: 
   OutputType: 1
+  m_startState: 0
   processingDuration: 0
+  _audioClip: {fileID: 0}
+  shouldLoopAudio: 0
 --- !u!114 &114907567730614140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -372,7 +375,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 9
-  m_Sprite: {fileID: 21300000, guid: 6367a488a7eed734ea66a69b1d265b16, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7446ba713fd841e44b6243bd9530d7f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
