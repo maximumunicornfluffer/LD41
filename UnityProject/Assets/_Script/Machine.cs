@@ -149,7 +149,6 @@ namespace DefaultNamespace
 
         protected override void Highlight(bool highlight)
         {
-            m_highlighted = highlight;
             UpdateHighlight();
         }
 
