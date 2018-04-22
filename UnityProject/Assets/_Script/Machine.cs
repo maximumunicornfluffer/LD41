@@ -20,7 +20,6 @@ namespace DefaultNamespace
         
         private MachineStates m_state = MachineStates.IDLE;
         private float m_processingEndTime;
-        private bool m_highlighted = false;
 
         private Animator m_animator;
         

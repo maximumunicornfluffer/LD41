@@ -39,6 +39,7 @@ GameObject:
   - component: {fileID: 61532051000524372}
   - component: {fileID: 212832507880944742}
   - component: {fileID: 114757298495155566}
+  - component: {fileID: 95227405930362472}
   m_Layer: 0
   m_Name: Fries
   m_TagString: Untagged
@@ -157,7 +158,7 @@ Transform:
   m_GameObject: {fileID: 1022277129310488}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0046, y: 0.0499, z: 0}
-  m_LocalScale: {x: 0.09942, y: 0.0698905, z: 1}
+  m_LocalScale: {x: 0.06, y: 0.0698905, z: 1}
   m_Children:
   - {fileID: 4199558437754430}
   - {fileID: 4591289347554268}
@@ -188,7 +189,7 @@ Transform:
   m_GameObject: {fileID: 1013975561967210}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.2, z: 0}
-  m_LocalScale: {x: 0.5029169, y: 0.71540487, z: 1}
+  m_LocalScale: {x: 0.5029169, y: 0.5029169, z: 1}
   m_Children: []
   m_Father: {fileID: 4556097738024866}
   m_RootOrder: 2
@@ -209,8 +210,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.16, y: 0.16}
-    newSize: {x: 0.16, y: 0.16}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -243,6 +244,23 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!95 &95227405930362472
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1022277129310488}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 22100000, guid: b131e56051648284b8b84b34e579038d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!95 &95980875203814468
 Animator:
   serializedVersion: 3
@@ -293,6 +311,7 @@ MonoBehaviour:
   _stuffInHandDisplayer: {fileID: 114341331337129210}
   InputTypes: 02000000
   OutputType: 3
+  m_startState: 0
   processingDuration: 5
 --- !u!212 &212175221175717328
 SpriteRenderer:
@@ -465,7 +484,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0

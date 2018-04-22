@@ -311,6 +311,7 @@ MonoBehaviour:
   _stuffInHandDisplayer: {fileID: 114291751342805660}
   InputTypes: 04000000
   OutputType: 5
+  m_startState: 0
   processingDuration: 5
 --- !u!212 &212185936554338008
 SpriteRenderer:
