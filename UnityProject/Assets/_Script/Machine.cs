@@ -13,7 +13,6 @@ namespace DefaultNamespace
         public MachineStates m_startState = MachineStates.IDLE;
         public float processingDuration;
         
-        
         public override IEType Type { get { return IEType.Machine; } }
 
         private HashSet<StuffType> m_stuffs = new HashSet<StuffType>();
