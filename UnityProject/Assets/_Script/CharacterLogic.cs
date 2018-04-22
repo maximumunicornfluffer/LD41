@@ -15,6 +15,7 @@ namespace DefaultNamespace
 		//Sfx
 		private AudioSource _audioSource;
 		private AudioClip catchClip;
+		private AudioClip catchWaterClip;
         private Animator _animator;
 
         void Start() {
@@ -23,6 +24,7 @@ namespace DefaultNamespace
 			_audioSource.volume = 1.0f;
 
 			catchClip = GameManager.Instance.m_audioResources.catchSound;
+			catchWaterClip = GameManager.Instance.m_audioResources.catchWaterSound;
 
 		    _animator = GetComponent<Animator>();
 		}
@@ -116,11 +118,17 @@ namespace DefaultNamespace
 			_audioSource.Play();
 		}
 
+		private void PlayCatchWaterSound() {
+			_audioSource.clip = catchWaterClip;
+			_audioSource.loop = false;
+			_audioSource.Play();
+		}
+
         public void ActivateMachine(Machine machine)
         {
             StuffInHands = machine.Activate(_stuffInHands);
 			if (StuffInHands == StuffType.Water) {
-
+				PlayCatchWaterSound();
 			} else if (StuffInHands != StuffType.None) {
 				PlayCatchSound();
 			}
