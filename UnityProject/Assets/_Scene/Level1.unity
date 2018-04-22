@@ -4287,6 +4287,11 @@ Prefab:
       propertyPath: shouldLoopAudio
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114757298495155566, guid: bf30a3fb05bd0654bbf3b711316c36bb,
+        type: 2}
+      propertyPath: m_startState
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bf30a3fb05bd0654bbf3b711316c36bb, type: 2}
   m_IsPrefabParent: 0

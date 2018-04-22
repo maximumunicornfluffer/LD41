@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Name: Audio Resources
   m_EditorClassIdentifier: 
   catchSound: {fileID: 8300000, guid: 07cda62e839468f4a9551a6ec5c43077, type: 3}
+  catchWaterSound: {fileID: 8300000, guid: ebd55c586ce6d6c4e9a6b3d5660fc8d8, type: 3}

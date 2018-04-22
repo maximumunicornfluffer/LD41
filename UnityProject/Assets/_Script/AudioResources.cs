@@ -6,6 +6,7 @@ namespace DefaultNamespace
 	public class AudioResources : ScriptableObject
 	{
 		public AudioClip catchSound;
+		public AudioClip catchWaterSound;
 	}
 }
 
