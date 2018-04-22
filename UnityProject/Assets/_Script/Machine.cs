@@ -39,12 +39,12 @@ namespace DefaultNamespace
 		private AudioClip _earthAudioClip;
 		private AudioClip _cookedAudioClip;
 
+        
         protected override void Awake()
         {
             base.Awake();
             m_animator = GetComponent<Animator>();
             m_progressBar = GetComponentInChildren<FillBar>();
-
             State = m_startState;
             UpdateDisplay();
         }
@@ -85,6 +85,7 @@ namespace DefaultNamespace
             UpdateDisplay();
             if (state == MachineStates.PROCESSING)
             {
+                GameManager.Instance.ScoreManager.Add(5);
                 StartProcessingSound();
             }
             else if (state == MachineStates.FULL)

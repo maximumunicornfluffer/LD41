@@ -23,6 +23,7 @@ namespace DefaultNamespace
 		[SerializeField] public AudioResources m_audioResources;
 
         private ClientManager _clientManager;
+        private ScoreManager _scoreManager;
         private IEManager _ieManager = new IEManager();
 
         private LevelData _data;
@@ -37,6 +38,7 @@ namespace DefaultNamespace
             _data = FindObjectOfType<LevelData>();
 
             _clientManager = gameObject.GetComponent<ClientManager>();
+            _scoreManager = gameObject.GetComponent<ScoreManager>();
 
             InitializePlayers();
 
@@ -111,6 +113,8 @@ namespace DefaultNamespace
         {
             get { return _clientManager; }
         }
+
+        public ScoreManager ScoreManager => _scoreManager;
 
         public StuffDictionary StuffDictionary
         {
