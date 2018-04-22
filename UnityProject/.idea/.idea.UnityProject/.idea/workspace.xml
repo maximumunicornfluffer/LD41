@@ -4,12 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/Assets/_Script/ClientManager.cs" line="108" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a181831a-269e-413d-b4c2-b21904af5e2c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.UnityProject/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.UnityProject/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scene/GlobalGameLogic.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scene/GlobalGameLogic.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scene/Level1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scene/Level1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Script/ScoreManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Script/ScoreManager.cs" afterDir="false" />
-    </list>
+    <list default="true" id="a181831a-269e-413d-b4c2-b21904af5e2c" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -99,14 +94,14 @@
       <file leaf-file-name="ScoreManager.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Assets/_Script/ScoreManager.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="225">
+              <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
               <folding>
-                <marker date="1524410275064" expanded="true" signature="6:72" ph="..." />
-                <marker date="1524410275064" expanded="true" signature="100:439" ph="{...}" />
-                <marker date="1524410275064" expanded="true" signature="148:437" ph="{...}" />
-                <marker date="1524410275064" expanded="true" signature="243:287" ph="{...}" />
-                <marker date="1524410275064" expanded="true" signature="324:422" ph="{...}" />
+                <marker date="1524411267255" expanded="true" signature="6:72" ph="..." />
+                <marker date="1524411267255" expanded="true" signature="100:487" ph="{...}" />
+                <marker date="1524411267255" expanded="true" signature="148:485" ph="{...}" />
+                <marker date="1524411267255" expanded="true" signature="243:335" ph="{...}" />
+                <marker date="1524411267255" expanded="true" signature="372:470" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -276,7 +271,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37261000" />
+    <option name="totallyTimeSpent" value="37898000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -754,14 +749,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Assets/_Script/ScoreManager.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="225">
+          <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
           <folding>
-            <marker date="1524410275064" expanded="true" signature="6:72" ph="..." />
-            <marker date="1524410275064" expanded="true" signature="100:439" ph="{...}" />
-            <marker date="1524410275064" expanded="true" signature="148:437" ph="{...}" />
-            <marker date="1524410275064" expanded="true" signature="243:287" ph="{...}" />
-            <marker date="1524410275064" expanded="true" signature="324:422" ph="{...}" />
+            <marker date="1524411267255" expanded="true" signature="6:72" ph="..." />
+            <marker date="1524411267255" expanded="true" signature="100:487" ph="{...}" />
+            <marker date="1524411267255" expanded="true" signature="148:485" ph="{...}" />
+            <marker date="1524411267255" expanded="true" signature="243:335" ph="{...}" />
+            <marker date="1524411267255" expanded="true" signature="372:470" ph="{...}" />
           </folding>
         </state>
       </provider>
