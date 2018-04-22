@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 4148915105669688}
   - component: {fileID: 61881125813900214}
   - component: {fileID: 212944085812986570}
-  - component: {fileID: 114322583613733426}
+  - component: {fileID: 114720887076115660}
   m_Layer: 0
   m_Name: Counter
   m_TagString: Untagged
@@ -229,7 +229,7 @@ MonoBehaviour:
   _corpsSprite: {fileID: 21300000, guid: 55999d17b156eb84281a1de688e53ff0, type: 3}
   _cinderSprite: {fileID: 21300000, guid: 6d0b901dae27ddb4db2ce6f9f2a6c615, type: 3}
   _icon: {fileID: 212569279422644296}
---- !u!114 &114322583613733426
+--- !u!114 &114720887076115660
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -237,14 +237,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1624294951973730}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1c758a5f92c41d9a4a5f8f9791a1605, type: 3}
+  m_Script: {fileID: 11500000, guid: 5374b8ec8e2842359f9625d1574a9e93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_spriteRenderer: {fileID: 212944085812986570}
   _stuffInHandDisplayer: {fileID: 114139574988371010}
-  InputTypes: 02000000
-  OutputType: 3
-  processingDuration: 5
+  InputTypes: 03000000
+  OutputType: 0
+  processingDuration: 0
 --- !u!212 &212569279422644296
 SpriteRenderer:
   m_ObjectHideFlags: 1

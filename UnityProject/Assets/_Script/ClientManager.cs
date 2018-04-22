@@ -26,7 +26,7 @@ namespace DefaultNamespace
             _clients.Add(client);
             _lastClientPop = Time.time;
         }
-
+        
         public void UpdateLoop()
         {
             RefreshClientList();
