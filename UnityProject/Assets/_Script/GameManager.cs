@@ -20,6 +20,7 @@ namespace DefaultNamespace
         [SerializeField] private Character[] _characterPrefab;
 
         [SerializeField] private StuffDictionary m_stuffDictionary;
+		[SerializeField] private AudioResources m_audioResources;
 
         private ClientManager _clientManager;
         private IEManager _ieManager = new IEManager();

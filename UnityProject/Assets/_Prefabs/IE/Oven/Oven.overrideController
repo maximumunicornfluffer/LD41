@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: Fries
+  m_Controller: {fileID: 9100000, guid: 62c2ed48dba281144803dbaf224a2fb9, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 042b9d0c135f573459b0cb7e1e421e6e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 8231f70db186c604eb6be2e03093c214, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: d9c2b8bc263beba4aba338a49dabe436, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 18f7afe4ab886b14387789048317e2e3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 15cfd13eefb64704ea19264ba5bf2222, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6a2073aec11d3c44cbac1b66cb3fdbd7, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 5371011f96d6a0f499608c680bf385a9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 95cc25e17acf6cc4e801f2a701e1242e, type: 2}

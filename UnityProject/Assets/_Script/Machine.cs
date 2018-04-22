@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -9,7 +10,9 @@ namespace DefaultNamespace
         [SerializeField] private StuffInHandDisplayer _stuffInHandDisplayer;
         public List<StuffType> InputTypes;
         public StuffType OutputType = StuffType.None;
+        public MachineStates m_startState = MachineStates.IDLE;
         public float processingDuration;
+        
         
         public override IEType Type { get { return IEType.Machine; } }
 
@@ -17,16 +20,18 @@ namespace DefaultNamespace
         
         private MachineStates m_state = MachineStates.IDLE;
         private float m_processingEndTime;
-        private bool m_highlighted = false; 
+
+        private Animator m_animator;
         
         protected override void Awake()
         {
             base.Awake();
-            State = MachineStates.IDLE;
+            m_animator = GetComponent<Animator>();
+            State = m_startState;
             UpdateDisplay();
         }
 
-        public virtual MachineStates State
+        public MachineStates State
         {
             get { return m_state; }
             set
@@ -46,26 +51,40 @@ namespace DefaultNamespace
         
         private void UpdateHighlight()
         {
-            switch (m_state)
-            {
-                case MachineStates.IDLE:
-                    if (m_highlighted)
-                        m_spriteRenderer.color = Color.red;
-                    else
-                        m_spriteRenderer.color = Color.white;
-                    break;
-                case MachineStates.PROCESSING:
-                    m_spriteRenderer.color = Color.yellow;
-                    break;
-                case MachineStates.FULL:
-                    m_spriteRenderer.color = Color.green;
-                    break;
-            }
+//            switch (m_state)
+//            {
+//                case MachineStates.IDLE:
+//                case MachineStates.HALF_FILLED:
+//                    m_spriteRenderer.color = Color.white;
+//                    break;
+//                case MachineStates.PROCESSING:
+//                    m_spriteRenderer.color = Color.yellow;
+//                    break;
+//                case MachineStates.FULL:
+//                    m_spriteRenderer.color = Color.green;
+//                    break;
+//            }
         }
 
+        public void Update()
+        {
+            if (m_animator)
+            {
+                var state = (int) m_state;
+                var animState = m_animator.GetInteger("State");
+                if (state != animState)
+                    m_animator.SetInteger("State", state);
+            }            
+        }
+        
+        public bool IsIdle
+        {
+            get { return State == MachineStates.IDLE || State == MachineStates.HALF_FILLED; }
+        }
+        
         private void UpdateDisplay()
         {
-            if (InputTypes.Count != 0 && State == MachineStates.IDLE && !HasAllIngredients())
+            if (InputTypes.Count != 0 && IsIdle && !HasAllIngredients())
             {
                 var neededStuff = NeededStuff();
                 _stuffInHandDisplayer.SetStuffInHand(neededStuff);
@@ -90,13 +109,16 @@ namespace DefaultNamespace
 
         public StuffType Activate(StuffType stuff)
         {
-            if (State == MachineStates.IDLE && InputTypes.Count != 0 && NeededStuff() == stuff)
+            if (IsIdle && InputTypes.Count != 0 && NeededStuff() == stuff)
             {
                 m_stuffs.Add(stuff);
                 UpdateDisplay();
             }
+            
+            if (m_stuffs.Count > 0 && !HasAllIngredients())
+                State = MachineStates.HALF_FILLED;
 
-            if (State == MachineStates.IDLE && HasAllIngredients())
+            if (State < MachineStates.PROCESSING && HasAllIngredients())
             {
                 State = MachineStates.PROCESSING;
                 m_processingEndTime = Time.realtimeSinceStartup + processingDuration;
@@ -127,7 +149,6 @@ namespace DefaultNamespace
 
         protected override void Highlight(bool highlight)
         {
-            m_highlighted = highlight;
             UpdateHighlight();
         }
 

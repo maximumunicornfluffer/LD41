@@ -36,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1699201921465778}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.3486446, y: 0.4227097, z: 0}
+  m_LocalPosition: {x: -1.4286301, y: 1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,9 @@ MonoBehaviour:
   _arriveTimestamp: 0
   _state: 0
   _time: 0
-  _waitPosition: {x: 0, y: 0, z: 0}
-  _currentPosition: {x: 0, y: 0, z: 0}
+  _musicManager: {fileID: 0}
+  _waitPosition: {x: -1.43, y: -0.33, z: 0}
+  _currentPosition: {x: -1.4286301, y: 1.48, z: 0}
 --- !u!212 &212608388604684942
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -111,7 +112,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: 4fdf313806f7db54c948ca4d6715ac19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: fca847a05093cc44e98809a54184a479, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

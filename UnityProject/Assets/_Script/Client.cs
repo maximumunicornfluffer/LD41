@@ -17,6 +17,8 @@ namespace DefaultNamespace
         public ClientState _state;
         public float _time = 0f;
 
+		public MusicManager _musicManager;
+
         public Vector3 _waitPosition;
         private Vector3 _deadPosition;
         public Vector3 _currentPosition;
@@ -24,6 +26,9 @@ namespace DefaultNamespace
         private LevelData _data;
         private ScoreManager _scoreManager;
         private Animator _animator;
+
+		//Sfx
+		private AudioSource _audioSource;
 
         public void SetOrder(int order)
         {
@@ -38,6 +43,11 @@ namespace DefaultNamespace
 
             _scoreManager = FindObjectOfType<ScoreManager>();
             ChangeState(ClientState.Arrive);
+
+			_audioSource = gameObject.AddComponent<AudioSource>();
+			_audioSource.loop = true;
+			_audioSource.volume = 1.0f;
+
         }
 
         private void InitializeLocation()
@@ -114,6 +124,8 @@ namespace DefaultNamespace
 
         public bool GiveStuff(StuffType inputStuff)
         {
+            if ((int) _state >= (int) ClientState.IsServed && _state != ClientState.QueueMove)
+                return false;
             if (_want.GetType() != inputStuff.GetType())
                 return false;
             ChangeState(ClientState.IsServed);
@@ -127,6 +139,23 @@ namespace DefaultNamespace
             _animator.SetInteger("State", (int) _state);
         }
 
+		public void OnEatAnimationStart(AudioClip audioClip)
+		{
+			_audioSource.clip = audioClip;
+			_audioSource.Play();
+		}
+
+		public void OnEatAnimationEnd()
+		{
+			_audioSource.Stop();
+		}
+
+		public void OnDeathAnimationStart()
+		{
+			//Debug.Log("death animation start!!!");
+			_musicManager.PlayDarkEvent();
+		}
+
         public void OnDeathAnimationEnd()
         {
             var corpse = GameManager.Instance.InstantiateStuff(StuffType.Corpes);
@@ -134,7 +163,7 @@ namespace DefaultNamespace
             Destroy(gameObject);
         }
 
-        public void SetPosition(Vector3 vector3)
+        private void SetPosition(Vector3 vector3)
         {
             transform.localPosition = new Vector3(vector3.x, vector3.y, vector3.z);
             _currentPosition = transform.localPosition;

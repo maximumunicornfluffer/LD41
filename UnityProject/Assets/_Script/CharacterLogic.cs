@@ -12,6 +12,15 @@ namespace DefaultNamespace
 
         private readonly List<IE> iesInVicinity = new List<IE>();
 
+		//Sfx
+		private AudioSource _audioSource;
+
+		void Start() {
+			_audioSource = gameObject.AddComponent<AudioSource>();
+			_audioSource.loop = true;
+			_audioSource.volume = 1.0f;
+		}
+
         private StuffType StuffInHands
         {
             get { return _stuffInHands; }
@@ -59,7 +68,7 @@ namespace DefaultNamespace
                 foreach (var ie in iesInVicinity.Where(e => e.Type == IEType.Machine))
                 {
                     var machine = ie as Machine;
-                    if (machine.State == MachineStates.IDLE &&
+                    if (machine.IsIdle &&
                         (machine.InputTypes.Count == 0 && StuffInHands == StuffType.None || machine.NeededStuff() == StuffInHands))
                     {
                         ActivateMachine(machine);
