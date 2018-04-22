@@ -36,6 +36,9 @@ namespace DefaultNamespace
         private AudioSource _audioSource;
         //private AudioClip catchClip;
 
+		private AudioClip _earthAudioClip;
+		private AudioClip _cookedAudioClip;
+
         protected override void Awake()
         {
             base.Awake();
@@ -45,17 +48,7 @@ namespace DefaultNamespace
             State = m_startState;
             UpdateDisplay();
         }
-
-        void Start()
-        {
-            _audioSource = gameObject.AddComponent<AudioSource>();
-            _audioSource.loop = shouldLoopAudio;
-            _audioSource.volume = 1.0f;
-
-            _audioSource.clip = _audioClip;
-            //catchClip = GameManager.Instance.m_audioResources.catchSound;
-        }
-
+			
         private void OnEnable()
         {
             if (m_progressBar)
@@ -64,6 +57,15 @@ namespace DefaultNamespace
                 SetProgress(-1.0f);
             }
         }
+		void Start() {
+			_audioSource = gameObject.AddComponent<AudioSource>();
+			_audioSource.volume = 1.0f;
+
+			//catchClip = GameManager.Instance.m_audioResources.catchSound;
+
+			_earthAudioClip = GameManager.Instance.m_audioResources.earthSound;
+			_cookedAudioClip = GameManager.Instance.m_audioResources.cookedSound;
+		}
 
         public MachineStates State
         {
@@ -155,6 +157,9 @@ namespace DefaultNamespace
             {
                 m_stuffs.Add(stuff);
                 UpdateDisplay();
+				if (stuff == StuffType.Cinder) {
+					PlayEarthSound();
+				}
             }
 
             if (m_stuffs.Count > 0 && !HasAllIngredients())
@@ -229,18 +234,32 @@ namespace DefaultNamespace
                 SetProgress(-1.0f);
             }
         }
+			
+		private void PlayEarthSound() {
+			_audioSource.clip = _earthAudioClip;
+			_audioSource.loop = false;
+			_audioSource.Play();
+		}
 
-        private void StartProcessingSound()
-        {
-            _audioSource.Play();
-        }
+		private void PlayCookedSound() {
+			_audioSource.clip = _cookedAudioClip;
+			_audioSource.loop = false;
+			_audioSource.Play();
+		}
 
-        private void StopProcessingSound()
-        {
-            if (shouldLoopAudio)
-            {
-                _audioSource.Stop();
-            }
-        }
+		private void StartProcessingSound() {
+			_audioSource.clip = _audioClip;
+			_audioSource.loop = shouldLoopAudio;
+			_audioSource.Play();
+		}
+
+		private void StopProcessingSound() {
+			if (shouldLoopAudio) {
+				_audioSource.Stop();
+				if (OutputType == StuffType.Fries || OutputType == StuffType.Cinder) { 
+					PlayCookedSound();
+				}
+			}
+		}
     }
 }
