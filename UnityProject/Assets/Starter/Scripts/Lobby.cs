@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using DefaultNamespace.UI;
 using States;
 using Ui.Game;
 using UnityEngine;
@@ -10,9 +11,8 @@ namespace DefaultNamespace
   {
     [SerializeField] public string[] _racesNames;
 
-    [SerializeField]
-    public MultipleChoiceButtons _buttonsUI;
-
+    [SerializeField] private CharactersSelectionUi m_characterSelection;
+    
     private void Start()
     {
       InputsManager.Instance.AutoUpdate = true;
@@ -25,7 +25,7 @@ namespace DefaultNamespace
         choices.Add(new ChoiceInformation(raceName,listener ));
       }
       
-      _buttonsUI.Init(choices);
+      m_characterSelection.SetInformation(choices[0]);
     }
   }
 }

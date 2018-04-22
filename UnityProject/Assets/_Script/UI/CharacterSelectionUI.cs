@@ -1,8 +1,16 @@
-﻿using Assets.Scripts.PlayerManagement;
+﻿using System;
+using Assets.Scripts.PlayerManagement;
 using UnityEngine;
 
 namespace DefaultNamespace.UI
 {
+  public enum CharacterSelectionState
+  {
+    Choosing,
+    Selected,
+    Empty,
+  }
+  
   public class CharacterSelectionUI : MonoBehaviour
   {
     [SerializeField]
@@ -10,24 +18,100 @@ namespace DefaultNamespace.UI
 
     private PlayerInput _input;
     private int _index;
+    
+    [SerializeField]
+    private GameObject m_emptyGO;
+    [SerializeField]
+    private GameObject m_choosingGO;
+    [SerializeField]
+    private GameObject m_readyGO;
+    
+    private CharacterSelectionState m_state = CharacterSelectionState.Empty;
 
+    public event Action<PlayerInput> OnPlayerCanceled;
+
+    void Awake()
+    {
+      m_state = CharacterSelectionState.Choosing;
+      State = CharacterSelectionState.Empty;
+    }
+    
     public void SetPlayerInput(PlayerInput input)
     {
+      if (_input != null) return;
       _input = input;
+      State = _input == null ? CharacterSelectionState.Empty : CharacterSelectionState.Choosing;
     }
 
     private void Update()
     {
-      if (_input == null)
+      if (_stateJustChanged)
+      {
+        // on passe une frame pour éviter que le bouton d'activation ne sélectionne un perso.
+        _stateJustChanged = false;
         return;
+      }
+      
+      switch (State)
+      {
+        case CharacterSelectionState.Empty:
+          //
+          break;
+        case CharacterSelectionState.Choosing:
+          UpdateChoosing();
+          break;
+        case CharacterSelectionState.Selected:
+          UpdateSelected();
+          break;
+      }
+    }
 
+    private void UpdateChoosing()
+    {
       if (_input.H1UpButtonDown())
         IncIndex();
       
       if (_input.H1DownButtonDown())
         DecIndex();
+
+      if (_input.ADown())
+      {
+        State = CharacterSelectionState.Selected;
+      } 
+      else if (_input.BDown())
+      {
+        State = CharacterSelectionState.Empty;
+        OnPlayerCanceled?.Invoke(_input);
+        _input = null;
+        _index = 0;
+      }
     }
 
+    private void UpdateSelected()
+    {
+      if (_input.B())
+      {
+        State = CharacterSelectionState.Choosing;
+      }
+    }
+
+    private bool _stateJustChanged = false;
+    
+    public CharacterSelectionState State
+    {
+      get { return m_state;}
+      set
+      {
+        if (m_state == value) return;
+        m_state = value;
+        m_choosingGO.SetActive(m_state == CharacterSelectionState.Choosing);
+        m_emptyGO.SetActive(m_state == CharacterSelectionState.Empty);
+        m_readyGO.SetActive(m_state == CharacterSelectionState.Selected);
+        _animator.gameObject.SetActive(m_state != CharacterSelectionState.Empty);
+        _stateJustChanged = true;
+      }
+    }
+    
     private void IncIndex()
     {
       _index++;

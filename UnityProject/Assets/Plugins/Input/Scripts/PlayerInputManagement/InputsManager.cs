@@ -24,6 +24,8 @@ public class InputsManager : MonoBehaviour ,IPreUpdate
   public event Action<PlayerInput> OnNewPlayer;
   public event Action<PlayerInput> OnPlayerLeave;
 
+  public bool EnableCheckPlayersActions = true;
+  
   private Dictionary<string,PlayerInput> _playersByPadIndex = new Dictionary<string, PlayerInput>();
   private PlayerInput _mainPlayerInput;
 
@@ -91,10 +93,13 @@ public class InputsManager : MonoBehaviour ,IPreUpdate
 
 
 	  var validInputIndexes = PlayerInputUtils.GetValidInputIndexes();
-	  foreach (int i in validInputIndexes)
+	  if (EnableCheckPlayersActions)
 	  {
-	    HandleStart(i);
-	    CheckPlayerActions(i);
+	    foreach (int i in validInputIndexes)
+	    {
+	      HandleStart(i);
+	      CheckPlayerActions(i);
+	    }
 	  }
 
 	  var indexLeft = _activeIndex.Where(ai => !validInputIndexes.Contains(ai)).ToArray();
@@ -104,6 +109,24 @@ public class InputsManager : MonoBehaviour ,IPreUpdate
 	  }
 	}
 
+  public void RequestCreatePlayerByIndex(int index)
+  {
+    if (_activeIndex.Contains(index))
+    {
+      return;
+    }
+    CreatePlayer(index, PadUsedType.SINGLE);
+  }
+  
+  public void RequestRemovePlayerByIndex(PlayerInput input, int index)
+  {
+    if (!_activeIndex.Contains(index))
+    {
+      return;
+    }
+    Leave(input, index);
+  }
+  
   public void ForceCreateMainPlayer()
   {
     var indexes = PlayerInputUtils.GetValidInputIndexes();
