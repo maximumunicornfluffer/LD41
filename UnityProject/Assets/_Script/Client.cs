@@ -116,6 +116,8 @@ namespace DefaultNamespace
 
         public bool GiveStuff(StuffType inputStuff)
         {
+            if ((int) _state < (int) ClientState.IsServed || _state == ClientState.QueueMove)
+                return false;
             if (_want.GetType() != inputStuff.GetType())
                 return false;
             ChangeState(ClientState.IsServed);
@@ -152,7 +154,7 @@ namespace DefaultNamespace
             Destroy(gameObject);
         }
 
-        public void SetPosition(Vector3 vector3)
+        private void SetPosition(Vector3 vector3)
         {
             transform.localPosition = new Vector3(vector3.x, vector3.y, vector3.z);
             _currentPosition = transform.localPosition;
