@@ -9,6 +9,7 @@ namespace DefaultNamespace
     public class ClientManager : MonoBehaviour
     {
         [SerializeField] private Client _clientPrefab;
+        [SerializeField] private Client _kidClientPrefab;
         private List<Client> _clients;
         private float _lastClientPop;
         private Vector3[] _waitPositionsPossible;
@@ -41,16 +42,15 @@ namespace DefaultNamespace
 
         private void AddNewClient()
         {
-            var client = Instantiate(_clientPrefab);
+            var client = Instantiate(Random.Range(0,101) <50 ? _clientPrefab : _kidClientPrefab);
 
             for (var cpt = 0; cpt < 10; cpt++)
             {
-                if (_clients.All(c => c._waitPosition != _waitPositionsPossible[cpt]))
-                {
-                    client._waitPosition = _waitPositionsPossible[cpt];
-                    client.SetOrder(cpt);
-                    break;
-                }
+                if (_clients.Any(c => c._waitPosition == _waitPositionsPossible[cpt])) 
+                    continue;
+                client._waitPosition = _waitPositionsPossible[cpt];
+                client.SetOrder(cpt);
+                break;
             }
 
 
@@ -62,7 +62,7 @@ namespace DefaultNamespace
         {
             RefreshClientList();
 
-            if ((Time.time - _lastClientPop) > 20 && _clients.Count < 10)
+            if ((Time.time - _lastClientPop) > 15 && _clients.Count < 10)
             {
                 AddNewClient();
             }
