@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _want: 0
-  _attemptMax: 5
+  _waitMax: 10000
   _arriveTimestamp: 0
   _time: 0
 --- !u!212 &212986377000275292
