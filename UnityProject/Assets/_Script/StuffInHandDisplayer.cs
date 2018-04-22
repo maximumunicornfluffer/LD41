@@ -45,5 +45,10 @@ namespace DefaultNamespace
       }
       
     }
+    
+    public SpriteRenderer Renderer
+    {
+      get { return _icon; }
+    }
   }
 }

@@ -8,6 +8,7 @@ namespace DefaultNamespace
 {
     public class Client : MonoBehaviour
     {
+        [SerializeField] private StuffInHandDisplayer _stuffInHandDisplayer;
         public StuffType _want = StuffType.Fries;
 
         public float _waitMax = 10f;
@@ -30,12 +31,21 @@ namespace DefaultNamespace
 
         public void SetOrder(int order)
         {
-            GetComponent<SpriteRenderer>().sortingOrder = 100 - order;
+            var sortingOrder = 100 - order;
+            _renderer.sortingOrder = sortingOrder;
+            if (_stuffInHandDisplayer)
+                _stuffInHandDisplayer.Renderer.sortingOrder = sortingOrder;
         }
 
+        private SpriteRenderer _renderer;
+        
         void Awake()
         {
+            _renderer = GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
+            
+            _renderer.flipX = true;
+            
             InitializeLocation();
 
             ChangeState(ClientState.Arrive);
@@ -126,8 +136,10 @@ namespace DefaultNamespace
         {
             if ((int) _state >= (int) ClientState.IsServed && _state != ClientState.QueueMove)
                 return false;
-            if (_want.GetType() != inputStuff.GetType())
+            
+            if (_want != inputStuff)
                 return false;
+            
             ChangeState(ClientState.IsServed);
 
             var mood = GetHappiness();
@@ -148,8 +160,21 @@ namespace DefaultNamespace
 
         public void ChangeState(ClientState state)
         {
+            Debug.Log("ChangeState : " + state);
             _state = state;
             _animator.SetInteger("State", (int) _state);
+            switch (_state)
+            {
+                case ClientState.Arrive:
+                    if (_stuffInHandDisplayer)
+                        _stuffInHandDisplayer.SetStuffInHand(_want);
+                    break;
+                case ClientState.QuitAngry:
+                case ClientState.QuitHappy:
+                    if (_stuffInHandDisplayer)
+                        _stuffInHandDisplayer.SetStuffInHand(StuffType.None);
+                    break;
+            }
         }
 
         public void OnEatAnimationStart(AudioClip audioClip)
