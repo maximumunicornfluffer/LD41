@@ -17,24 +17,33 @@ namespace DefaultNamespace.UI
     {
       _animator = GetComponent<Animator>();
       _spriteRenderer = GetComponent<SpriteRenderer>();
+
+      _animator.enabled = _warning;
+      UpdateSprites();
     }
 
     public void SetValue(float value)
     {
-      _value = value;
+      _value = Mathf.Clamp01(value);
     }
 
     public void SetWarning(bool warning)
     {
       _warning = warning;
-      _animator.enabled = warning;
+      if (_animator)
+        _animator.enabled = warning;
     }
 
     private void Update()
     {
-      if (!_warning)
+      UpdateSprites();
+    }
+
+    private void UpdateSprites()
+    {
+      if (_spriteRenderer && !_warning)
       {
-        var index = (int)((_normalSprites.Length-1)* _value);
+        var index = (int) ((_normalSprites.Length - 1) * _value);
         _spriteRenderer.sprite = _normalSprites[index];
       }
     }

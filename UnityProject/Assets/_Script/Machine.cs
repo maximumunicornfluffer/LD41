@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using DefaultNamespace.UI;
+using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
 
 namespace DefaultNamespace
 {
-    
     public class Machine : IE
     {
         [SerializeField] private StuffInHandDisplayer _stuffInHandDisplayer;
@@ -12,39 +13,57 @@ namespace DefaultNamespace
         public StuffType OutputType = StuffType.None;
         public MachineStates m_startState = MachineStates.IDLE;
         public float processingDuration;
-        
-        public override IEType Type { get { return IEType.Machine; } }
+
+        public override IEType Type
+        {
+            get { return IEType.Machine; }
+        }
 
         private HashSet<StuffType> m_stuffs = new HashSet<StuffType>();
-        
+
+        private FillBar m_progressBar;
         private MachineStates m_state = MachineStates.IDLE;
+        private float m_processingStartTime;
         private float m_processingEndTime;
 
         private Animator m_animator;
 
-		//Sfx
+        //Sfx
 
-		public AudioClip _audioClip;
-		public bool shouldLoopAudio = false;
-		private AudioSource _audioSource;
-		//private AudioClip catchClip;
-        
+        public AudioClip _audioClip;
+        public bool shouldLoopAudio = false;
+
+        private AudioSource _audioSource;
+        //private AudioClip catchClip;
+
         protected override void Awake()
         {
             base.Awake();
             m_animator = GetComponent<Animator>();
+            m_progressBar = GetComponentInChildren<FillBar>();
+
             State = m_startState;
             UpdateDisplay();
         }
 
-		void Start() {
-			_audioSource = gameObject.AddComponent<AudioSource>();
-			_audioSource.loop = shouldLoopAudio;
-			_audioSource.volume = 1.0f;
+        void Start()
+        {
+            _audioSource = gameObject.AddComponent<AudioSource>();
+            _audioSource.loop = shouldLoopAudio;
+            _audioSource.volume = 1.0f;
 
-			_audioSource.clip = _audioClip;
-			//catchClip = GameManager.Instance.m_audioResources.catchSound;
-		}
+            _audioSource.clip = _audioClip;
+            //catchClip = GameManager.Instance.m_audioResources.catchSound;
+        }
+
+        private void OnEnable()
+        {
+            if (m_progressBar)
+            {
+                m_progressBar.SetWarning(false);
+                SetProgress(-1.0f);
+            }
+        }
 
         public MachineStates State
         {
@@ -62,13 +81,16 @@ namespace DefaultNamespace
         protected virtual void OnStateChanged(MachineStates state)
         {
             UpdateDisplay();
-			if (state == MachineStates.PROCESSING) {
-				StartProcessingSound();
-			} else if (state == MachineStates.FULL) {
-				StopProcessingSound();
-			}
+            if (state == MachineStates.PROCESSING)
+            {
+                StartProcessingSound();
+            }
+            else if (state == MachineStates.FULL)
+            {
+                StopProcessingSound();
+            }
         }
-        
+
         private void UpdateHighlight()
         {
 //            switch (m_state)
@@ -94,14 +116,14 @@ namespace DefaultNamespace
                 var animState = m_animator.GetInteger("State");
                 if (state != animState)
                     m_animator.SetInteger("State", state);
-            }            
+            }
         }
-        
+
         public bool IsIdle
         {
             get { return State == MachineStates.IDLE || State == MachineStates.HALF_FILLED; }
         }
-        
+
         private void UpdateDisplay()
         {
             if (InputTypes.Count != 0 && IsIdle && !HasAllIngredients())
@@ -110,7 +132,7 @@ namespace DefaultNamespace
                 _stuffInHandDisplayer.SetStuffInHand(neededStuff);
                 return;
             }
-            
+
             _stuffInHandDisplayer.SetStuffInHand(StuffType.None);
         }
 
@@ -134,14 +156,16 @@ namespace DefaultNamespace
                 m_stuffs.Add(stuff);
                 UpdateDisplay();
             }
-            
+
             if (m_stuffs.Count > 0 && !HasAllIngredients())
                 State = MachineStates.HALF_FILLED;
 
             if (State < MachineStates.PROCESSING && HasAllIngredients())
             {
+                SetProgress(0);
                 State = MachineStates.PROCESSING;
-                m_processingEndTime = Time.realtimeSinceStartup + processingDuration;
+                m_processingStartTime = Time.realtimeSinceStartup;
+                m_processingEndTime = m_processingStartTime + processingDuration;
             }
 
             if (State == MachineStates.PROCESSING)
@@ -152,8 +176,17 @@ namespace DefaultNamespace
                 State = MachineStates.IDLE;
                 return OutputType;
             }
-            
+
             return StuffType.None;
+        }
+
+        private void SetProgress(float value)
+        {
+            if (m_progressBar)
+            {
+                m_progressBar.gameObject.SetActive(value >= 0);
+                m_progressBar.SetValue(value);
+            }
         }
 
         private bool HasAllIngredients()
@@ -174,28 +207,40 @@ namespace DefaultNamespace
 
         public override void UpdateLoop()
         {
-			if (State == MachineStates.PROCESSING) {
+            if (State == MachineStates.PROCESSING)
+            {
                 CheckProcessing();
-			} 
+            }
         }
 
         private void CheckProcessing()
         {
+            if (State == MachineStates.PROCESSING)
+            {
+                var now = Time.realtimeSinceStartup;
+                var percentage = (now - m_processingStartTime) / processingDuration;
+                SetProgress(percentage);
+            }
+
             if (Mathf.Approximately(processingDuration, 0) || Time.realtimeSinceStartup > m_processingEndTime)
             {
                 m_stuffs.Clear();
                 State = MachineStates.FULL;
+                SetProgress(-1.0f);
             }
         }
 
-		private void StartProcessingSound() {
-			_audioSource.Play();
-		}
+        private void StartProcessingSound()
+        {
+            _audioSource.Play();
+        }
 
-		private void StopProcessingSound() {
-			if (shouldLoopAudio) {
-				_audioSource.Stop();
-			}
-		}
+        private void StopProcessingSound()
+        {
+            if (shouldLoopAudio)
+            {
+                _audioSource.Stop();
+            }
+        }
     }
 }
