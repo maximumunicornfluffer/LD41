@@ -27,6 +27,10 @@ namespace DefaultNamespace
         private ScoreManager _scoreManager;
         private Animator _animator;
 
+		//Sfx
+		private AudioClip EatClip;
+		private AudioSource ClientAudioSource;
+
         public void SetOrder(int order)
         {
             GetComponent<SpriteRenderer>().sortingOrder = 100 - order;
@@ -40,6 +44,16 @@ namespace DefaultNamespace
 
             _scoreManager = FindObjectOfType<ScoreManager>();
             ChangeState(ClientState.Arrive);
+
+			gameObject.AddComponent<AudioSource>();
+			AudioSource[] allAudioSources = GetComponents<AudioSource>();
+			ClientAudioSource = allAudioSources[0];
+
+			EatClip = (AudioClip)Resources.Load("crouchcrouch", typeof(AudioClip));
+
+			ClientAudioSource.clip = EatClip;
+			ClientAudioSource.loop = true;
+
         }
 
         private void InitializeLocation()
@@ -133,12 +147,12 @@ namespace DefaultNamespace
 
 		public void OnEatAnimationStart()
 		{
-
+			ClientAudioSource.Play();
 		}
 
 		public void OnEatAnimationEnd()
 		{
-
+			ClientAudioSource.Stop();
 		}
 
 		public void OnDeathAnimationStart()
