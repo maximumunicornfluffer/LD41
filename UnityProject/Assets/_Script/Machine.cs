@@ -190,11 +190,12 @@ namespace DefaultNamespace
 
 		private void StartProcessingSound() {
 			Debug.Log("start sound");
+			_audioSource.Play();
 		}
 
 		private void StopProcessingSound() {
 			if (shouldLoopAudio) {
-
+				_audioSource.Stop();
 			}
 			Debug.Log("stop sound");
 		}
