@@ -688,6 +688,7 @@ MonoBehaviour:
   - {fileID: 114180019470431672, guid: 0c16572c1bafc9644b1c73caef674d3e, type: 2}
   - {fileID: 114180019470431672, guid: dd7d43ac274b5864293046f5f15a0e48, type: 2}
   m_stuffDictionary: {fileID: 11400000, guid: 17a83e989e71b1847b8609f2d99000d6, type: 2}
+  m_audioResources: {fileID: 11400000, guid: bc1fd0a5276d94389bf52222eef0eec7, type: 2}
 --- !u!114 &888818619
 MonoBehaviour:
   m_ObjectHideFlags: 0
