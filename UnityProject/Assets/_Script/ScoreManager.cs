@@ -6,6 +6,7 @@ namespace DefaultNamespace
 {
     public class ScoreManager : MonoBehaviour
     {
+        private string scorePattern = "score : {0}";
         private int _score;
 
         public Text ScoreText;
@@ -13,13 +14,13 @@ namespace DefaultNamespace
         public void Start()
         {
             _score = 0;
-            ScoreText.text = _score.ToString();
+            ScoreText.text = string.Format(scorePattern, _score.ToString());
         }
 
         public void Add(int points)
         {
             _score += points;
-            ScoreText.text = _score.ToString();
+            ScoreText.text = string.Format(scorePattern, _score.ToString());
         }
         
     }
