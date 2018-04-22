@@ -54,6 +54,11 @@ public class InputsManager : MonoBehaviour ,IPreUpdate
 								
   }
 
+  public IEnumerable<PlayerInput> GetPlayerInputs()
+  {
+    return _playersByPadIndex.Values;
+  }
+
   void Awake()
   {
     if (m_instance == null)
