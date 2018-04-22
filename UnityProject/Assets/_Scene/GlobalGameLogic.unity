@@ -669,6 +669,8 @@ MonoBehaviour:
     type: 2}
   _kidClientPrefab: {fileID: 114770698281567500, guid: 0d80b344c7af536468d7d84faa853dcc,
     type: 2}
+  _titineClientPrefab: {fileID: 114403153198776564, guid: 4502ff357a8d2c54997083e4fc9d6000,
+    type: 2}
   _musicManager: {fileID: 888818620}
 --- !u!114 &888818618
 MonoBehaviour:
