@@ -21,6 +21,8 @@ public class Player
     _color = color;
     _input = input;
   }
+
+  public int CharacterSelectionIndex { get; set; }
   
   
 

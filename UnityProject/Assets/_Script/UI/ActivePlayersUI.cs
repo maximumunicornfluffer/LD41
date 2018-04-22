@@ -29,15 +29,15 @@ namespace DefaultNamespace.UI
       
       _animator.SetBool("show", show);
       
-      for (int i = 0 ;i < _players.Length; i++)
-      {
-        if (InputsManager.Instance.ActiveIndex.Contains(i + 1))
-        {
-          _players[i].SetActive(true);         
-        }
-        else
-          _players[i].SetActive(false);
-      }
+//      for (int i = 0 ;i < _players.Length; i++)
+//      {
+//        if (InputsManager.Instance.ActiveIndex.Contains(i + 1))
+//        {
+//          _players[i].SetActive(true);         
+//        }
+//        else
+//          _players[i].SetActive(false);
+//      }
     }
   }
 }

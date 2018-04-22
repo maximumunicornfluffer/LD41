@@ -39,6 +39,11 @@ namespace DefaultNamespace
       get { return _players.Values.ToList(); }
     }
 
+    public Player GetPlayer(PlayerInput input)
+    {
+      return _players[input];
+    }
+
     private void OnPlayerLeave(PlayerInput input)
     {
       if (_players.ContainsKey(input))

@@ -65,7 +65,7 @@ namespace DefaultNamespace
                 //_data._StartPoints
                 //var ship = PrefabUtility.InstantiatePrefab(_shipPrefab);
 
-                var character = Instantiate(_characterPrefab[i]);
+                var character = Instantiate(_characterPrefab[p.CharacterSelectionIndex]);
 
                 character.transform.SetParent(transform);
                 character.transform.SetParent(null);
