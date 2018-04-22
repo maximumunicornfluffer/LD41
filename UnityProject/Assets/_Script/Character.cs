@@ -9,7 +9,6 @@ namespace DefaultNamespace
     private float _moveForceRatio = 100;
     [SerializeField]
     private CharacterLogic m_logic;
-
     
     public PlayerInput _input;
 
@@ -47,7 +46,7 @@ namespace DefaultNamespace
       // Force Z to remove zfighting.
       transform.localPosition = new Vector3(pos.x, pos.y, -pos.y);
       
-      if (_input.ADown())
+			if (_input.ADown() || Input.GetKeyDown(KeyCode.Space))
       {
         m_logic.Act();
       }
