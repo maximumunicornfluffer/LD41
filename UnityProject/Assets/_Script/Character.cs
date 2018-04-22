@@ -1,4 +1,5 @@
 ﻿using Assets.Scripts.PlayerManagement;
+using DefaultNamespace.UI;
 using UnityEngine;
 
 namespace DefaultNamespace
@@ -12,10 +13,10 @@ namespace DefaultNamespace
     
     public PlayerInput _input;
 
-    
     private Rigidbody2D _rb;
     private Animator _animator;
     private SpriteRenderer _spriteRenderer;
+
 
     void Awake()
     {
