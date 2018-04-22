@@ -115,6 +115,7 @@ namespace DefaultNamespace
         }
 
         public ScoreManager ScoreManager => _scoreManager;
+        public LevelData LevelData => _data;
 
         public StuffDictionary StuffDictionary
         {

@@ -23,8 +23,6 @@ namespace DefaultNamespace
         private Vector3 _deadPosition;
         public Vector3 _currentPosition;
         private Vector3 _startPosition;
-        private LevelData _data;
-        private ScoreManager _scoreManager;
         private Animator _animator;
 
         //Sfx
@@ -38,10 +36,8 @@ namespace DefaultNamespace
         void Awake()
         {
             _animator = GetComponent<Animator>();
-            _data = FindObjectOfType<LevelData>();
             InitializeLocation();
 
-            _scoreManager = FindObjectOfType<ScoreManager>();
             ChangeState(ClientState.Arrive);
 
             _audioSource = gameObject.AddComponent<AudioSource>();
@@ -51,9 +47,9 @@ namespace DefaultNamespace
 
         private void InitializeLocation()
         {
-            _startPosition = _currentPosition = _data.ClientPoints[0].localPosition;
-            _waitPosition = _data.ClientPoints[1].localPosition;
-            _deadPosition = _data.ClientPoints[2].localPosition;
+            _startPosition = _currentPosition = GameManager.Instance.LevelData.ClientPoints[0].localPosition;
+            _waitPosition = GameManager.Instance.LevelData.ClientPoints[1].localPosition;
+            _deadPosition = GameManager.Instance.LevelData.ClientPoints[2].localPosition;
             _currentPosition.x = _currentPosition.x + (Random.Range(-0.005f, 0.005f));
             transform.localPosition = _currentPosition;
         }
@@ -69,10 +65,10 @@ namespace DefaultNamespace
                     Move();
                     break;
                 case ClientState.Wait:
-                    if (GetAttemptTime() > _waitMax)
+                    /*if (GetAttemptTime() > _waitMax)
                     {
                         ChangeState(ClientState.QuitAngry);
-                    }
+                    }*/
 
                     break;
                 case ClientState.IsServed:
@@ -116,9 +112,14 @@ namespace DefaultNamespace
             }
         }
 
-        private float GetAttemptTime()
+        private MoodStates GetHappiness()
         {
-            return Time.realtimeSinceStartup - _arriveTimestamp;
+            var waitTime =  Time.realtimeSinceStartup - _arriveTimestamp;
+            if (waitTime < 10)
+                return MoodStates.VeryFine;
+            if (waitTime < 20)
+                return MoodStates.Fine;
+            return waitTime < 30 ? MoodStates.AndYou : MoodStates.Bad;
         }
 
         public bool GiveStuff(StuffType inputStuff)
@@ -129,12 +130,19 @@ namespace DefaultNamespace
                 return false;
             ChangeState(ClientState.IsServed);
 
-            if (GetAttemptTime() < 10)
-                _scoreManager.Add(10);
-            else if (GetAttemptTime() < 20)
-                _scoreManager.Add(5);
-            else if (GetAttemptTime() < 30)
-                _scoreManager.Add(1);
+            var mood = GetHappiness();
+            switch (mood)
+            {
+                    case MoodStates.VeryFine:
+                        GameManager.Instance.ScoreManager.Add(10);
+                        break;
+                    case MoodStates.Fine:
+                        GameManager.Instance.ScoreManager.Add(5);
+                        break;
+                    case  MoodStates.AndYou:
+                        GameManager.Instance.ScoreManager.Add(1);
+                        break;
+            }
             return true;
         }
 
@@ -173,5 +181,13 @@ namespace DefaultNamespace
             transform.localPosition = new Vector3(vector3.x, vector3.y, vector3.z);
             _currentPosition = transform.localPosition;
         }
+    }
+
+    public enum MoodStates
+    {
+        VeryFine,
+        Fine,
+        AndYou,
+        Bad
     }
 }

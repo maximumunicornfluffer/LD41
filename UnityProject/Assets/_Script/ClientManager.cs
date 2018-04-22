@@ -14,18 +14,16 @@ namespace DefaultNamespace
         private List<Client> _clients;
         private float _lastClientPop;
         private Vector3[] _waitPositionsPossible;
-        private LevelData _data;
+        
 
 		public MusicManager _musicManager;
 
         private void GenerateWaitPoints()
         {
-            _data = FindObjectOfType<LevelData>();
-
             _waitPositionsPossible = new Vector3[10];
-            _waitPositionsPossible[0] = _data.ClientPoints[1].localPosition;
+            _waitPositionsPossible[0] = GameManager.Instance.LevelData.ClientPoints[1].localPosition;
 
-            var space = (_data.ClientPoints[0].localPosition.y - _data.ClientPoints[1].localPosition.y) / 10;
+            var space = (GameManager.Instance.LevelData.ClientPoints[0].localPosition.y - GameManager.Instance.LevelData.ClientPoints[1].localPosition.y) / 10;
 
             for (int i = 1; i < 10; i++)
             {
