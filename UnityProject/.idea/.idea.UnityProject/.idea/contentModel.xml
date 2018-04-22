@@ -13,6 +13,7 @@
         <e p="Client.cs" t="Include" />
         <e p="ClientManager.cs" t="Include" />
         <e p="ClientState.cs" t="Include" />
+        <e p="Counter.cs" t="Include" />
         <e p="GameManager.cs" t="Include" />
         <e p="IE.cs" t="Include" />
         <e p="IEManager.cs" t="Include" />
@@ -22,6 +23,7 @@
         <e p="MusicManager.cs" t="Include" />
         <e p="ScoreManager.cs" t="Include" />
         <e p="Stuff.cs" t="Include" />
+        <e p="StuffDictionary.cs" t="Include" />
         <e p="StuffInHandDisplayer.cs" t="Include" />
         <e p="UI" t="Include">
           <e p="ActivePlayersUI.cs" t="Include" />
