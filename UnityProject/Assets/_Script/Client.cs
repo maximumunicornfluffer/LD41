@@ -130,7 +130,7 @@ namespace DefaultNamespace
 
         public bool GiveStuff(StuffType inputStuff)
         {
-            if ((int) _state < (int) ClientState.IsServed || _state == ClientState.QueueMove)
+            if ((int) _state >= (int) ClientState.IsServed && _state != ClientState.QueueMove)
                 return false;
             if (_want.GetType() != inputStuff.GetType())
                 return false;
