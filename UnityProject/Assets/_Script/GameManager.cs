@@ -36,6 +36,11 @@ namespace DefaultNamespace
         private ClientManager _clientManager;
         private ScoreManager _scoreManager;
 		private TimeManager _timeManager;
+
+		public MusicManager _musicManager;
+		public AudioClip _endAudioClip;
+
+		private AudioSource _endAudioSource;
         
         private IEManager _ieManager = new IEManager();
 
@@ -55,6 +60,10 @@ namespace DefaultNamespace
             _clientManager = gameObject.GetComponent<ClientManager>();
             _scoreManager = gameObject.GetComponent<ScoreManager>();
             _timeManager = gameObject.GetComponent<TimeManager>();
+			_endAudioSource = gameObject.AddComponent<AudioSource>();
+			_endAudioSource.volume = 1.0f;
+			_endAudioSource.loop = false;
+			_endAudioSource.clip = _endAudioClip;
 
             m_gameManagerExit.OnAnimCloseEnded += OnAnimCloseEnded;
 
@@ -138,6 +147,8 @@ namespace DefaultNamespace
             foreach (var character in _characters)
                 character._input = null;
 
+			_musicManager.StopAllMusic();
+			_endAudioSource.Play();
             // TODO Play ending sound + Stop music
             
             yield return new WaitForSeconds(2.0f);

@@ -26,14 +26,13 @@ namespace DefaultNamespace
 			
 		void Update() {
 			_remainingTime = _remainingTime - Time.deltaTime;
-			int roundTime = (int)Mathf.Ceil(_remainingTime);
+			int roundTime = (int)Mathf.Max(Mathf.Ceil(_remainingTime), 0);
 			TimeText.text = string.Format(scorePattern, roundTime.ToString());
 
 		}
 
 		public bool IsGameOver() {
 			return _remainingTime < 0;
-
 		}
 
 	}

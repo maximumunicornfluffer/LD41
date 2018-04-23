@@ -799,6 +799,8 @@ MonoBehaviour:
   m_stuffDictionary: {fileID: 11400000, guid: 17a83e989e71b1847b8609f2d99000d6, type: 2}
   m_audioResources: {fileID: 11400000, guid: bc1fd0a5276d94389bf52222eef0eec7, type: 2}
   m_gameManagerExit: {fileID: 677942926}
+  _musicManager: {fileID: 888818620}
+  _endAudioClip: {fileID: 8300000, guid: 69bed01908b914f4dbb8d9748179503a, type: 3}
 --- !u!114 &888818619
 MonoBehaviour:
   m_ObjectHideFlags: 0

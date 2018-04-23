@@ -33,19 +33,19 @@ public class MusicManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		gameObject.AddComponent<AudioSource>();
-		gameObject.AddComponent<AudioSource>();
+		MainMusicSource = gameObject.AddComponent<AudioSource>();
+		DarkEventMusicSource = gameObject.AddComponent<AudioSource>();
 
-		AudioSource[] allAudioSources = GetComponents<AudioSource>();
+		//AudioSource[] allAudioSources = GetComponents<AudioSource>();
 
-		MainMusicSource = allAudioSources[0];
+		//MainMusicSource = allAudioSources[0];
 
 		MainMusicSource.clip = MainMusicClip;
 		MainMusicSource.volume = 0.5f;
 		MainMusicSource.Play();
 		MainMusicSource.loop = true;
 
-		DarkEventMusicSource = allAudioSources[1];
+		//DarkEventMusicSource = allAudioSources[1];
 
 		DarkEventMusicSource.clip = DarkEventMusicClip;
 		DarkEventMusicSource.volume = 0.0f;
@@ -99,5 +99,10 @@ public class MusicManager : MonoBehaviour {
 				timeInTheDark = 0.0f;
 			}
 		}
+	}
+
+	public void StopAllMusic() {
+		MainMusicSource.Stop();
+		DarkEventMusicSource.Stop();
 	}
 }
