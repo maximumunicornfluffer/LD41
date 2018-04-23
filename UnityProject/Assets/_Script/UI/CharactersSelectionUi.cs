@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Assets.Scripts.PlayerManagement;
+using States;
 using Ui.Game;
 using UnityEngine;
 
@@ -69,7 +70,7 @@ namespace DefaultNamespace.UI
 
         void OnExitAnimEnded()
         {
-            m_information.Event.Invoke();
+            FSM.Instance.GotoState<TutoState>();
         }
         
         void OnDestroy()

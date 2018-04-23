@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/_Scene/Menu.unity
     guid: 438dce14af0727e419dba2e8ca46f227
   - enabled: 1
+    path: Assets/_Scene/Tuto.unity
+    guid: 35ec6a03d36001f4b89a22f08a0e22fb
+  - enabled: 1
     path: Assets/_Scene/GlobalGameLogic.unity
     guid: 3890b62593114d24da970308c3a5c056
   - enabled: 1
