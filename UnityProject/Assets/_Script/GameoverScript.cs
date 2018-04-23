@@ -22,7 +22,7 @@ public class GameoverScript : MonoBehaviour {
 		srenderer = gameObject.GetComponent<SpriteRenderer>();
 		audio = gameObject.GetComponent<AudioSource>();
 
-		scoreText.text = GameManager.Instance.GetScoreText();
+		scoreText.text = "Your " + GameManager.Instance.GetScoreText();
 	}
 
 	// Update is called once per frame
