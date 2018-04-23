@@ -16,6 +16,8 @@ namespace DefaultNamespace
     private void Start()
     {
       InputsManager.Instance.AutoUpdate = true;
+
+			//GameManager.Instance.ResetScore();
       
       List<ChoiceInformation> choices= new List<ChoiceInformation>();
       foreach (var raceName in _racesNames)

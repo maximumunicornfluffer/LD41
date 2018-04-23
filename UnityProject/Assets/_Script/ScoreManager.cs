@@ -22,6 +22,10 @@ namespace DefaultNamespace
             _score += points;
             ScoreText.text = string.Format(scorePattern, _score.ToString());
         }
+
+		public void Reset() {
+			_score = 0;
+		}
         
     }
 }

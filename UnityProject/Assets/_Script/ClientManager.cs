@@ -36,6 +36,9 @@ namespace DefaultNamespace
 
         void Start()
         {
+
+			Debug.Log("client manager start");
+
             GenerateWaitPoints();
             _clients = new List<Client>();
 
@@ -59,6 +62,15 @@ namespace DefaultNamespace
             _clients.Add(client);
             _lastClientPop = Time.time;
         }
+
+		public void RemoveAllCients() {
+			foreach (var client in _clients)
+			{
+				Destroy(client.gameObject);
+			}
+
+			_clients.Clear();
+		}
 
         private Client DetermineClientType()
         {

@@ -2,6 +2,10 @@
 using Assets.Scripts.PlayerManagement;
 using UnityEngine;
 
+using Assets.Scripts.PlayerManagement;
+using States;
+using UnityEngine.SceneManagement;
+
 namespace DefaultNamespace
 {
     public class GameManager : MonoBehaviour
@@ -24,6 +28,8 @@ namespace DefaultNamespace
 
         private ClientManager _clientManager;
         private ScoreManager _scoreManager;
+		private TimeManager _timeManager;
+
         private IEManager _ieManager = new IEManager();
 
         private LevelData _data;
@@ -39,6 +45,7 @@ namespace DefaultNamespace
 
             _clientManager = gameObject.GetComponent<ClientManager>();
             _scoreManager = gameObject.GetComponent<ScoreManager>();
+			_timeManager = gameObject.GetComponent<TimeManager>();
 
             InitializePlayers();
 
@@ -97,9 +104,26 @@ namespace DefaultNamespace
             _clientManager.UpdateLoop();
 
             _ieManager.UpdateLoop();
-        }
 
-        public Stuff InstantiateStuff(StuffType type, StuffSubType subtype)
+			if (_timeManager.IsGameOver()) {
+				_clientManager.RemoveAllCients();
+				FSM.Instance.GotoState<GameOverState>();
+				gameObject.AddComponent<PlayersManager>();
+			}
+        }
+			
+
+
+		public void ResetScore() 
+		{
+			if (_timeManager != null) {
+				
+				_scoreManager.Reset();
+			}
+		}
+
+
+		public Stuff InstantiateStuff(StuffType type, StuffSubType subtype)
         {
             return m_stuffDictionary.Instantiate(type, subtype, _data.IEContainer);
         }

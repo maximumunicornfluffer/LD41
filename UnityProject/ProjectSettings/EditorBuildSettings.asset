@@ -29,3 +29,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Starter/Scene/Race3.unity
     guid: 1249f1b25057adb498af49aca25cd5fa
+  - enabled: 1
+    path: Assets/_Scene/Game Over.unity
+    guid: c3d57b0fe7ae74652a3c202ba91e4c4d
