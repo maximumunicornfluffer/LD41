@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using DefaultNamespace.UI;
-using UnityEditor;
-using UnityEditorInternal;
 using UnityEngine;
 
 namespace DefaultNamespace

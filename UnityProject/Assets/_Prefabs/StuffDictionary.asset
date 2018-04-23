@@ -13,6 +13,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_corpsePrefab: {fileID: 114563833782167452, guid: c1f551c657c90784c9d2e1c5218c33da,
     type: 2}
+  m_corpse2Prefab: {fileID: 114563833782167452, guid: e4590d45aac7f3248a32a7794a90f4fc,
+    type: 2}
+  m_corpse3Prefab: {fileID: 114563833782167452, guid: a975750e4ce6e2449a0b6d9d7ff0f673,
+    type: 2}
   m_potatoPrefab: {fileID: 114563833782167452, guid: d92d3401a44f86045aaa6a7f8cdfb1df,
     type: 2}
   m_ashesPrefab: {fileID: 114563833782167452, guid: 2b89db4e15bb2744fbf586464f580719,

@@ -1,5 +1,4 @@
-﻿using NUnit.Framework.Internal;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace DefaultNamespace
