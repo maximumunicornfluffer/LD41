@@ -840,8 +840,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eba33fbe5ba442d6bfed45dd036ca2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 10
+  maxTime: 15
   TimeText: {fileID: 1612676333}
+  _bipAudioClip: {fileID: 8300000, guid: f5860ad48065d4387968da57c10b343b, type: 3}
 --- !u!1 &932281274
 GameObject:
   m_ObjectHideFlags: 0
