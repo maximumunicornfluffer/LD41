@@ -24,8 +24,7 @@ namespace DefaultNamespace
       if (InputsManager.Instance == null)
         return;
 
-
-			FSM.Instance.GotoState<TitleState>();
+			FSM.Instance.GotoState<SplashScreenState>();
 
       Destroy(this);
       

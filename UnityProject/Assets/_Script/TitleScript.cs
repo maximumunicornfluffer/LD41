@@ -13,11 +13,14 @@ public class TitleScript : MonoBehaviour {
 	private PlayerInput _input;
 	private SpriteRenderer srenderer;
 	private AudioSource audio;
+	private Animator _animator;
+	
 	// Use this for initialization
 	void Start () {
 
 		srenderer = gameObject.GetComponent<SpriteRenderer>();
 		audio = gameObject.GetComponent<AudioSource>();
+		_animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -38,11 +41,20 @@ public class TitleScript : MonoBehaviour {
 		{
 			srenderer.sprite = highlightedSprite;
 			audio.Play();
-
-			FSM.Instance.GotoState<LobbyState>();
-			gameObject.AddComponent<PlayersManager>();
-
-			//Load next scene here
+			
+			_animator.Play("Exit");
 		}
 	}
+
+	private void GotoLobby()
+	{
+		FSM.Instance.GotoState<LobbyState>();
+		gameObject.AddComponent<PlayersManager>();
+	}
+
+	public void OnAnimExitEnd()
+	{
+		GotoLobby();		
+	}
+	
 }
