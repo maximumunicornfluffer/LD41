@@ -14,12 +14,15 @@ namespace DefaultNamespace
         private List<Client> _clients;
         private float _lastClientPop;
         private Vector3[] _waitPositionsPossible;
-        
+
+        private float m_clientPopInterval;        
 
 		public MusicManager _musicManager;
 
         private void GenerateWaitPoints()
         {
+            m_clientPopInterval = 20.0f / PlayersManager.Instance.Players.Count;
+            
             _waitPositionsPossible = new Vector3[10];
             _waitPositionsPossible[0] = GameManager.Instance.LevelData.ClientPoints[1].localPosition;
 
@@ -86,7 +89,7 @@ namespace DefaultNamespace
         {
             RefreshClientList();
 
-            if ((Time.time - _lastClientPop) > 20 && _clients.Count < 10)
+            if ((Time.time - _lastClientPop) > m_clientPopInterval && _clients.Count < 10)
             {
                 AddNewClient();
             }
