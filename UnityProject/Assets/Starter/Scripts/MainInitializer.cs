@@ -25,8 +25,8 @@ namespace DefaultNamespace
         return;
 
 
-      FSM.Instance.GotoState<LobbyState>();
-      gameObject.AddComponent<PlayersManager>();
+			FSM.Instance.GotoState<TitleState>();
+
       Destroy(this);
       
 

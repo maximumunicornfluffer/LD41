@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Assets.Scripts.PlayerManagement;
+using States;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using DefaultNamespace;
 
 public class TitleScript : MonoBehaviour {
 
@@ -18,11 +22,26 @@ public class TitleScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (/*A button || */Input.GetKeyDown(KeyCode.Space))
+
+		bool shouldGoToLobby = false;
+
+		var validInputIndexes = PlayerInputUtils.GetValidInputIndexes();
+		foreach (var index in validInputIndexes)
 		{
-			Debug.Log("ok!!!");
+			if (PlayerInputUtils.GetButtonDown(PlayerInput._A, index)) {
+				shouldGoToLobby = true;
+			}
+		}
+
+
+		if (Input.GetKeyDown(KeyCode.Space) || shouldGoToLobby)
+		{
 			srenderer.sprite = highlightedSprite;
 			audio.Play();
+
+			FSM.Instance.GotoState<LobbyState>();
+			gameObject.AddComponent<PlayersManager>();
+
 			//Load next scene here
 		}
 	}
