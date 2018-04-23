@@ -13,17 +13,21 @@ namespace DefaultNamespace
         public void Start()
         {
             _score = 0;
-            ScoreText.text = string.Format(scorePattern, _score.ToString());
+			ScoreText.text = GetScoreText();
         }
 
         public void Add(int points)
         {
             _score += points;
-            ScoreText.text = string.Format(scorePattern, _score.ToString());
+			ScoreText.text = GetScoreText();
         }
 
 		public void Reset() {
 			_score = 0;
+		}
+
+		public string GetScoreText() {
+			return string.Format(scorePattern, _score.ToString());
 		}
         
     }

@@ -1,23 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Assets.Scripts.PlayerManagement;
 using States;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using DefaultNamespace;
 
 public class GameoverScript : MonoBehaviour {
 
 	public Sprite highlightedSprite;
+	public Text scoreText;
+
 	private PlayerInput _input;
 	private SpriteRenderer srenderer;
 	private AudioSource audio;
+
 	// Use this for initialization
 	void Start () {
 
 		srenderer = gameObject.GetComponent<SpriteRenderer>();
 		audio = gameObject.GetComponent<AudioSource>();
+
+		scoreText.text = GameManager.Instance.GetScoreText();
 	}
 
 	// Update is called once per frame

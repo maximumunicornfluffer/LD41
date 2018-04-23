@@ -122,6 +122,11 @@ namespace DefaultNamespace
 			}
 		}
 
+		public string GetScoreText() 
+		{
+			return _scoreManager.GetScoreText();
+		}
+
 
 		public Stuff InstantiateStuff(StuffType type, StuffSubType subtype)
         {
