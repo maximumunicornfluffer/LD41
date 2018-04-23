@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/_Scene/Default.unity
     guid: d3f6fd7c4d1d25140b0ba7b7edad6f19
   - enabled: 1
+    path: Assets/_Scene/Title.unity
+    guid: a1d4e573ed39149c19f507acced651c2
+  - enabled: 1
     path: Assets/_Scene/GlobalGameLogic.unity
     guid: 3890b62593114d24da970308c3a5c056
   - enabled: 1
