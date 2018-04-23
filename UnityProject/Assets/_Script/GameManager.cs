@@ -99,9 +99,9 @@ namespace DefaultNamespace
             _ieManager.UpdateLoop();
         }
 
-        public Stuff InstantiateStuff(StuffType type)
+        public Stuff InstantiateStuff(StuffType type, StuffSubType subtype)
         {
-            return m_stuffDictionary.Instantiate(type, _data.IEContainer);
+            return m_stuffDictionary.Instantiate(type, subtype, _data.IEContainer);
         }
 
         public IEManager IEManager

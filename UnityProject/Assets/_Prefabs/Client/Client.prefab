@@ -162,6 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _stuffInHandDisplayer: {fileID: 114675909107046744}
   _want: 3
+  _corpseType: 1
   _waitMax: 10000
   _arriveTimestamp: 0
   _state: 0

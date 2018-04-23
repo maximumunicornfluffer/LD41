@@ -10,6 +10,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private StuffInHandDisplayer _stuffInHandDisplayer;
         public StuffType _want = StuffType.Fries;
+        public StuffSubType _corpseType = StuffSubType.Corpse1;
 
         public float _waitMax = 10f;
 
@@ -196,8 +197,9 @@ namespace DefaultNamespace
 
         public void OnDeathAnimationEnd()
         {
-            var corpse = GameManager.Instance.InstantiateStuff(StuffType.Corpes);
+            var corpse = GameManager.Instance.InstantiateStuff(StuffType.Corpes, _corpseType);
             corpse.transform.position = transform.position;
+            corpse.m_spriteRenderer.flipX = _renderer.flipX;
             Destroy(gameObject);
         }
 

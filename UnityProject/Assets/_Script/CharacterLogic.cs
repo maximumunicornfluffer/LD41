@@ -7,6 +7,7 @@ namespace DefaultNamespace
     public class CharacterLogic : MonoBehaviour
     {
         public StuffType _stuffInHands = StuffType.None;
+        public StuffSubType _stuffSubTypeInHands = StuffSubType.None;
 
         [SerializeField] private StuffInHandDisplayer _stuffInHandDisplayer;
 
@@ -29,6 +30,12 @@ namespace DefaultNamespace
 		    _animator = GetComponent<Animator>();
 		}
 
+        private StuffSubType StuffInHandsSubType
+        {
+            get { return _stuffSubTypeInHands; }
+            set { _stuffSubTypeInHands = value; }
+        }
+        
         private StuffType StuffInHands
         {
             get { return _stuffInHands; }
@@ -41,7 +48,7 @@ namespace DefaultNamespace
                 if (_stuffInHandDisplayer)
                     _stuffInHandDisplayer.SetStuffInHand(_stuffInHands);
                 
-                _animator.SetBool("isCarrying", _stuffInHands!=StuffType.None);
+                _animator.SetBool("isCarrying", _stuffInHands==StuffType.Corpes);
             }
         }
 
@@ -98,9 +105,10 @@ namespace DefaultNamespace
 
             if (!found && StuffInHands != StuffType.None)
             {
-                var stuff = GameManager.Instance.InstantiateStuff(StuffInHands);
+                var stuff = GameManager.Instance.InstantiateStuff(StuffInHands, StuffInHandsSubType);
                 stuff.transform.position = transform.position;
                 StuffInHands = StuffType.None;
+                StuffInHandsSubType = StuffSubType.None;
             }
         }
 
@@ -109,6 +117,7 @@ namespace DefaultNamespace
         {
 			PlayCatchSound();
             StuffInHands = stuff.m_type;
+            StuffInHandsSubType = stuff.m_subType;
             stuff.PickUp();
         }
 
@@ -126,7 +135,7 @@ namespace DefaultNamespace
 
         public void ActivateMachine(Machine machine)
         {
-            StuffInHands = machine.Activate(_stuffInHands);
+            StuffInHands = machine.Activate(StuffInHands);
 			if (StuffInHands == StuffType.Water) {
 				PlayCatchWaterSound();
 			} else if (StuffInHands != StuffType.None) {

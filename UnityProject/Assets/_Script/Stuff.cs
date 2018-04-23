@@ -10,6 +10,12 @@
         Cinder,
     }
 
+    public enum StuffSubType
+    {
+        None,
+        Corpse1, Corpse2, Corpse3
+    }
+
     public enum StuffState
     {
         OnTheGround,
@@ -19,6 +25,7 @@
     public class Stuff : IE
     {
         public StuffType m_type;
+        public StuffSubType m_subType = StuffSubType.None;
         
         public override IEType Type => IEType.Resource;
 

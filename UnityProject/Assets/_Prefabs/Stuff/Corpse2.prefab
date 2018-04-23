@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114563833782167452}
   - component: {fileID: 50923985633866070}
   m_Layer: 0
-  m_Name: Corpse
+  m_Name: Corpse2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -55,7 +55,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4978314359156308}
-  - component: {fileID: 58083686781345658}
+  - component: {fileID: 58011160663935568}
   m_Layer: 0
   m_Name: collider
   m_TagString: Untagged
@@ -70,7 +70,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1319309638543708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.03, y: 0.09, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4726011156293966}
@@ -83,7 +83,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1221278610296278}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4785, y: -0.7986, z: 0}
+  m_LocalPosition: {x: 0.69484, y: -0.98392, z: 0}
   m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_Children:
   - {fileID: 4978314359156308}
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!58 &58083686781345658
+--- !u!58 &58011160663935568
 CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -136,7 +136,7 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02, y: -0.08}
+  m_Offset: {x: 0, y: -0.06}
   serializedVersion: 2
   m_Radius: 0.05
 --- !u!61 &61606104610810636
@@ -151,11 +151,11 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: -0.08}
+  m_Offset: {x: 0, y: -0.05}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.32, y: 0.32}
+    oldSize: {x: 0.24, y: 0.24}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -195,7 +195,7 @@ MonoBehaviour:
   m_spriteRenderer: {fileID: 212300824205713372}
   m_selectedIE: {fileID: 1319309638543708}
   m_type: 4
-  m_subType: 1
+  m_subType: 2
 --- !u!212 &212300824205713372
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -230,7 +230,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 33aa9ca47c85969488dc8b131c5ea6fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d3a2986edc89e8540b18e9da8fa86b28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
