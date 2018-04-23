@@ -212,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stuffInHands: 0
+  _stuffSubTypeInHands: 0
   _stuffInHandDisplayer: {fileID: 114886971468204152}
 --- !u!114 &114886971468204152
 MonoBehaviour:
@@ -352,7 +353,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 4fdf313806f7db54c948ca4d6715ac19, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8e2d289b7badcee499b1404195044bda, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
