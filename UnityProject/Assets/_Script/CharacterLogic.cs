@@ -66,7 +66,7 @@ namespace DefaultNamespace
         }
 
         public void Act()
-        {
+		{
             bool found = false;
             if (StuffInHands == StuffType.None)
             {
@@ -90,15 +90,27 @@ namespace DefaultNamespace
                     if (machine.IsIdle &&
                         (machine.InputTypes.Count == 0 && StuffInHands == StuffType.None || machine.NeededStuff() == StuffInHands))
                     {
-                        ActivateMachine(machine);
-                        found = true;
-                        break;
+						bool doActivate = true;
+						if (machine is Counter) {
+							doActivate = (machine as Counter).ClientAvailable();
+						}
+						if (doActivate) {
+							ActivateMachine(machine);
+							found = true;
+							break;
+						}
                     }
                     else if (machine.State == MachineStates.FULL && StuffInHands == StuffType.None)
                     {
-                        ActivateMachine(machine);
-                        found = true;
-                        break;
+						bool doActivate = true;
+						if (machine is Counter) {
+							doActivate = (machine as Counter).ClientAvailable();
+						}
+						if (doActivate) {
+							ActivateMachine(machine);
+							found = true;
+							break;
+						}
                     }
                 }
             }

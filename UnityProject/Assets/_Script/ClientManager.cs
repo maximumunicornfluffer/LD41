@@ -75,6 +75,17 @@ namespace DefaultNamespace
 			_clients.Clear();
 		}
 
+		public bool ClientExists() {
+			foreach (var client in _clients)
+			{
+				if (client._state == ClientState.Wait) {
+					return true;
+				}
+			}
+
+			return false;
+		}
+
         private Client DetermineClientType()
         {
             var random = Random.Range(0, 151);
