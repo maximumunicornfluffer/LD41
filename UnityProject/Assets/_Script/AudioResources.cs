@@ -9,6 +9,9 @@ namespace DefaultNamespace
 		public AudioClip catchWaterSound;
 		public AudioClip earthSound;
 		public AudioClip cookedSound;
+		public AudioClip confirmSound;
+		public AudioClip selectSound;
+		public AudioClip cancelSound;
 	}
 }
 

@@ -222,6 +222,7 @@ MonoBehaviour:
   m_emptyGO: {fileID: 731278116}
   m_choosingGO: {fileID: 1402908207}
   m_readyGO: {fileID: 1741343155}
+  _audioSounds: {fileID: 11400000, guid: bc1fd0a5276d94389bf52222eef0eec7, type: 2}
 --- !u!1 &224966531
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,6 +653,7 @@ MonoBehaviour:
   m_emptyGO: {fileID: 1554368728}
   m_choosingGO: {fileID: 258461553}
   m_readyGO: {fileID: 1830020920}
+  _audioSounds: {fileID: 11400000, guid: bc1fd0a5276d94389bf52222eef0eec7, type: 2}
 --- !u!1 &525373626
 GameObject:
   m_ObjectHideFlags: 0
@@ -800,6 +802,7 @@ MonoBehaviour:
   m_emptyGO: {fileID: 1890316121}
   m_choosingGO: {fileID: 1226888098}
   m_readyGO: {fileID: 1768041770}
+  _audioSounds: {fileID: 11400000, guid: bc1fd0a5276d94389bf52222eef0eec7, type: 2}
 --- !u!1 &616278663
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,6 +2634,7 @@ MonoBehaviour:
   m_emptyGO: {fileID: 1151980427}
   m_choosingGO: {fileID: 1907238000}
   m_readyGO: {fileID: 1453999552}
+  _audioSounds: {fileID: 11400000, guid: bc1fd0a5276d94389bf52222eef0eec7, type: 2}
 --- !u!1 &1890316121
 GameObject:
   m_ObjectHideFlags: 0
@@ -2709,6 +2713,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1937731979}
   - component: {fileID: 1937731978}
+  - component: {fileID: 1937731980}
   m_Layer: 0
   m_Name: UICamera
   m_TagString: Untagged
@@ -2765,6 +2770,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!81 &1937731980
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1937731977}
+  m_Enabled: 1
 --- !u!1 &1952974796
 GameObject:
   m_ObjectHideFlags: 0
