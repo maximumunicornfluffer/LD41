@@ -17,4 +17,4 @@ MonoBehaviour:
   cookedSound: {fileID: 8300000, guid: 9b7ce62b6bbfa401f91f23acbe081f1c, type: 3}
   confirmSound: {fileID: 8300000, guid: 776378afa5f86499d9945b19d86e7140, type: 3}
   selectSound: {fileID: 8300000, guid: 48b3461e226a64a01bd77d126ba8714e, type: 3}
-  cancelSound: {fileID: 0}
+  cancelSound: {fileID: 8300000, guid: 61c46e7cd1eaa4942a2726cbce945443, type: 3}

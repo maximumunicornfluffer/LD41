@@ -107,6 +107,7 @@ namespace DefaultNamespace.UI
 		{
 			if (_input.B ())
 			{
+				_audioSource.PlayOneShot (_audioSounds.cancelSound);
 				State = CharacterSelectionState.Choosing;
 			}
 		}

@@ -17,6 +17,8 @@ namespace DefaultNamespace.UI
         private bool m_started = false;
 
         private ChoiceInformation m_information;
+		public AudioResources _audioResources;
+		public AudioSource _audioSource;
         
         private void Awake()
         {
@@ -24,6 +26,9 @@ namespace DefaultNamespace.UI
 
             InputsManager.Instance.OnNewPlayer += OnNewPlayer;
             InputsManager.Instance.OnPlayerLeave += OnPlayerLeave;
+
+			_audioSource.volume = 1.0f;
+			_audioSource.loop = false;
 
             foreach (var selection in _selections)
             {
@@ -38,17 +43,22 @@ namespace DefaultNamespace.UI
         
         private void OnPlayerCanceled(PlayerInput input)
         {
+			
             if (m_started) return;
+			_audioSource.PlayOneShot(_audioResources.cancelSound);
             InputsManager.Instance.RequestRemovePlayerByIndex(input, input.InputIndex);
+			Debug.Log("player canceled");
         }
 
         private void OnPlayerLeave(PlayerInput input)
         {
             inputs.Remove(input);
+
         }
 
         private void OnNewPlayer(PlayerInput input)
         {
+			_audioSource.PlayOneShot(_audioResources.confirmSound);
             inputs.Add(input);
             var characterSelection = _selections.First(ui => ui.State == CharacterSelectionState.Empty);
             characterSelection.SetPlayerInput(input);
@@ -80,6 +90,7 @@ namespace DefaultNamespace.UI
                 {
                     if (!PlayerInputUtils.GetButtonDown(PlayerInput._START, input.InputIndex)) continue;
                     m_information.Event.Invoke();
+					_audioSource.PlayOneShot(_audioResources.confirmSound);
                     m_started = true;
                     break;
                 }
