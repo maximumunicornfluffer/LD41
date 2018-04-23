@@ -1,13 +1,19 @@
-﻿using System.Collections.Generic;
-using Assets.Scripts.PlayerManagement;
+﻿using System.Collections;
+using System.Collections.Generic;
+using DefaultNamespace.UI;
 using UnityEngine;
 
-using Assets.Scripts.PlayerManagement;
 using States;
-using UnityEngine.SceneManagement;
 
 namespace DefaultNamespace
 {
+    public enum GameStateEnum
+    {
+        Starting,
+        Running,
+        Ending,
+    }
+    
     public class GameManager : MonoBehaviour
     {
         #region Singleton
@@ -25,15 +31,18 @@ namespace DefaultNamespace
 
         [SerializeField] private StuffDictionary m_stuffDictionary;
 		[SerializeField] public AudioResources m_audioResources;
+		[SerializeField] public GameLogicExit m_gameManagerExit;
 
         private ClientManager _clientManager;
         private ScoreManager _scoreManager;
 		private TimeManager _timeManager;
-
+        
         private IEManager _ieManager = new IEManager();
 
         private LevelData _data;
 
+        private GameStateEnum m_state = GameStateEnum.Starting;
+        
         void Awake()
         {
             s_instance = this;
@@ -45,7 +54,9 @@ namespace DefaultNamespace
 
             _clientManager = gameObject.GetComponent<ClientManager>();
             _scoreManager = gameObject.GetComponent<ScoreManager>();
-			_timeManager = gameObject.GetComponent<TimeManager>();
+            _timeManager = gameObject.GetComponent<TimeManager>();
+
+            m_gameManagerExit.OnAnimCloseEnded += OnAnimCloseEnded;
 
             InitializePlayers();
 
@@ -57,12 +68,17 @@ namespace DefaultNamespace
 //
 //      _openRestartOrLeaveButton.onClick.AddListener(() =>
 //        _restartOrLeaveUI.gameObject.SetActive(!_restartOrLeaveUI.gameObject.activeSelf));
+
+            m_state = GameStateEnum.Running;
         }
 
+
+        private List<Character> _characters;
+        
         private void InitializePlayers()
         {
             int i = 0;
-            var characters = new List<Character>();
+            _characters = new List<Character>();
 
             if (PlayersManager.Instance.Players.Count == 0)
                 InputsManager.Instance.ForceCreateMainPlayer();
@@ -93,7 +109,7 @@ namespace DefaultNamespace
 
                 character.transform.position = _data.StartPoints[i].position;
 
-                characters.Add(character);
+                _characters.Add(character);
 
                 i++;
             }
@@ -101,18 +117,41 @@ namespace DefaultNamespace
 
         private void Update()
         {
-            _clientManager.UpdateLoop();
+            if (m_state == GameStateEnum.Running)
+            {
+                _clientManager.UpdateLoop();
+                _ieManager.UpdateLoop();
+                
+                if (_timeManager.IsGameOver())
+                {
+                    StartCoroutine(EndGameCoroutine());
+                }
+            }
 
-            _ieManager.UpdateLoop();
-
-			if (_timeManager.IsGameOver()) {
-				_clientManager.RemoveAllCients();
-				FSM.Instance.GotoState<GameOverState>();
-				gameObject.AddComponent<PlayersManager>();
-			}
+  
         }
-			
 
+        private IEnumerator EndGameCoroutine()
+        {
+            m_state = GameStateEnum.Ending;
+
+            foreach (var character in _characters)
+                character._input = null;
+
+            // TODO Play ending sound + Stop music
+            
+            yield return new WaitForSeconds(2.0f);
+            
+            m_gameManagerExit.PlayClose();
+        }
+
+        
+        private void OnAnimCloseEnded()
+        {
+            _clientManager.RemoveAllCients();
+            FSM.Instance.GotoState<GameOverState>();
+            gameObject.AddComponent<PlayersManager>();
+        }
 
 		public void ResetScore() 
 		{

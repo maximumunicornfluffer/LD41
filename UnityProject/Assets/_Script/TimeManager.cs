@@ -13,7 +13,7 @@ namespace DefaultNamespace
 	{
 		private string scorePattern = "Time : {0}";
 		private float _remainingTime;
-		private int maxTime = 180;
+		public int maxTime = 180;
 
 		public Text TimeText;
 
