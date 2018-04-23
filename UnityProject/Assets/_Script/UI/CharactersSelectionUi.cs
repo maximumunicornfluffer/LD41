@@ -15,13 +15,16 @@ namespace DefaultNamespace.UI
         private List<PlayerInput> inputs = new List<PlayerInput>();
         private bool _readyToStart = false;
         private bool m_started = false;
-
+        private Animator _animator;
+        
         private ChoiceInformation m_information;
 		public AudioResources _audioResources;
 		public AudioSource _audioSource;
         
         private void Awake()
         {
+            _animator = GetComponent<Animator>();
+            
             _startText.SetActive(false);
 
             InputsManager.Instance.OnNewPlayer += OnNewPlayer;
@@ -64,6 +67,11 @@ namespace DefaultNamespace.UI
             characterSelection.SetPlayerInput(input);
         }
 
+        void OnExitAnimEnded()
+        {
+            m_information.Event.Invoke();
+        }
+        
         void OnDestroy()
         {
             InputsManager.Instance.OnNewPlayer -= OnNewPlayer;
@@ -89,9 +97,9 @@ namespace DefaultNamespace.UI
                 foreach (var input in inputs)
                 {
                     if (!PlayerInputUtils.GetButtonDown(PlayerInput._START, input.InputIndex)) continue;
-                    m_information.Event.Invoke();
-					_audioSource.PlayOneShot(_audioResources.confirmSound);
+                    _audioSource.PlayOneShot(_audioResources.confirmSound);
                     m_started = true;
+                    _animator.Play("Close");
                     break;
                 }
             }
